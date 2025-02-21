@@ -39,8 +39,9 @@ const ProductCard: React.FC<ProductCardProps> = ({product}) => {
       <View style={styles.priceContainer}>
         <Text style={styles.price}>AED {product.price}</Text>
         <Text style={styles.discountedPrice}>AED {product.price * 1.2}</Text>
-        <Text style={styles.discount}>20% OFF</Text>
       </View>
+
+      <Text style={styles.discount}>20% OFF</Text>
 
       {/* Free Delivery Badge */}
       <Text style={styles.delivery}>🚚 Free Delivery</Text>
@@ -124,7 +125,6 @@ const styles = StyleSheet.create({
   discount: {
     fontSize: 12,
     color: 'green',
-    marginLeft: 6,
   },
   delivery: {
     fontSize: 12,

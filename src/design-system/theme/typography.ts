@@ -1,3 +1,5 @@
+import {TextStyle} from 'react-native';
+
 export const fontFamily = {
   regular: 'System',
   medium: 'System',

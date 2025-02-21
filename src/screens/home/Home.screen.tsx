@@ -1,10 +1,11 @@
 import React from 'react';
-import {Dimensions, Image, Text, View} from 'react-native';
+import {Dimensions, FlatList, Image, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import SearchBar from '../../design-system/organisms/SearchBar';
 import Carousel from '../../design-system/organisms/Carousel';
 import ProductCard from '../../design-system/organisms/ProductCard';
 import {categoryWise} from '../../data/categoryWise';
+import {textStyles} from '../../design-system/theme/typography';
 
 const Home = () => {
   const renderItem = ({item}) => (
@@ -18,7 +19,6 @@ const Home = () => {
 
   return (
     <SafeAreaView>
-      <Text>Home</Text>
       <SearchBar />
 
       <Carousel
@@ -29,7 +29,16 @@ const Home = () => {
         ]}
         renderItem={renderItem}
       />
-      <ProductCard product={categoryWise[0]} />
+      <View>
+        <View>
+          <Text style={[textStyles.heading]}>Hot Deals on Fashion</Text>
+        </View>
+        <FlatList
+          data={categoryWise}
+          horizontal
+          renderItem={({item}) => <ProductCard product={item} />}
+        />
+      </View>
     </SafeAreaView>
   );
 };
