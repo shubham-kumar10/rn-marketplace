@@ -8,11 +8,12 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import {MainStack} from './src/navigation/RootStack';
 
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <></>
+      <MainStack />
     </NavigationContainer>
   );
 }

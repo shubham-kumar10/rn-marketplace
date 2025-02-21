@@ -11,6 +11,7 @@ export const MainStack = () => {
         headerShadowVisible: false,
         animation: 'slide_from_right',
         contentStyle: {backgroundColor: 'white'},
+        headerShown: false,
       }}>
       <Stack.Screen name="Home" component={Home} />
       {/* <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
