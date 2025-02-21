@@ -12,7 +12,7 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <View style={{padding: 16}}>
+    <View style={{paddingTop: 16}}>
       <TextInput
         placeholder="Search products..."
         ref={searchQueryRef}

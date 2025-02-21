@@ -1,6 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {RootStackParamList} from './types';
-import Home from '../screens/home/Home.screen';
+import ProductDetailScreen from '../screens/detail/Product.screen';
+import BottomTabs from './BottomTabs';
+import {RootStackParamList, Screens} from './types'; // Import Enum & Types
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -13,10 +14,11 @@ export const MainStack = () => {
         contentStyle: {backgroundColor: 'white'},
         headerShown: false,
       }}>
-      <Stack.Screen name="Home" component={Home} />
-      {/* <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
-      <Stack.Screen name="CartReview" component={CartReviewScreen} />
-      <Stack.Screen name="Confirmation" component={ConfirmationScreen} /> */}
+      <Stack.Screen name={Screens.ROOT} component={BottomTabs} />
+      <Stack.Screen
+        name={Screens.PRODUCT_DETAILS}
+        component={ProductDetailScreen}
+      />
     </Stack.Navigator>
   );
 };

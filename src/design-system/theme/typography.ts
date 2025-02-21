@@ -15,7 +15,7 @@ export const fontSize = {
   xxl: 32,
 };
 
-export const fontWeight = {
+export const fontWeight: Record<string, TextStyle['fontWeight']> = {
   light: '300',
   regular: '400',
   medium: '500',

@@ -1,63 +1,76 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ViewStyle,
+} from 'react-native';
 import {Product} from '../../data/type';
+import spacing from '../theme/spacing';
+import {navigateToScreen} from '../../navigation/utils';
+import {Screens} from '../../navigation/types';
 
 interface ProductCardProps {
   product: Product;
+  style: ViewStyle;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({product}) => {
+const ProductCard: React.FC<ProductCardProps> = ({product, style}) => {
   return (
-    <View style={styles.card}>
-      {/* Product Image */}
-      <Image source={{uri: product.images[0]}} style={styles.image} />
+    <TouchableOpacity onPress={() => navigateToScreen(Screens.PRODUCT_DETAILS)}>
+      <View style={[styles.card, style]}>
+        {/* Product Image */}
+        <Image source={{uri: product.images[0]}} style={styles.image} />
 
-      {/* Tag Badge */}
-      <View style={styles.badgeContainer}>
-        <Text style={styles.badgeText}>Noon Exclusive</Text>
-      </View>
+        {/* Tag Badge */}
+        <View style={styles.badgeContainer}>
+          <Text style={styles.badgeText}>Noon Exclusive</Text>
+        </View>
 
-      {/* Favorite Button */}
-      <TouchableOpacity style={styles.favoriteButton}>
-        {/* <FontAwesome name="heart-o" size={18} color="#000" /> */}
-      </TouchableOpacity>
+        {/* Favorite Button */}
+        <TouchableOpacity style={styles.favoriteButton}>
+          {/* <FontAwesome name="heart-o" size={18} color="#000" /> */}
+        </TouchableOpacity>
 
-      {/* Product Details */}
-      <Text style={styles.title} numberOfLines={2}>
-        {product.title}
-      </Text>
-
-      {/* Rating */}
-      <View style={styles.ratingContainer}>
-        {/* <FontAwesome name="star" size={14} color="gold" /> */}
-        <Text style={styles.rating}>
-          {(product.id % 5) + 3.5} ({Math.floor(Math.random() * 100)})
+        {/* Product Details */}
+        <Text style={styles.title} numberOfLines={2}>
+          {product.title}
         </Text>
+
+        {/* Rating */}
+        <View style={styles.ratingContainer}>
+          {/* <FontAwesome name="star" size={14} color="gold" /> */}
+          <Text style={styles.rating}>
+            {(product.id % 5) + 3.5} ({Math.floor(Math.random() * 100)})
+          </Text>
+        </View>
+
+        {/* Price & Discount */}
+        <View style={styles.priceContainer}>
+          <Text style={styles.price}>AED {product.price}</Text>
+          <Text style={styles.discountedPrice}>AED {product.price * 1.2}</Text>
+        </View>
+
+        <Text style={styles.discount}>20% OFF</Text>
+
+        {/* Free Delivery Badge */}
+        <Text style={styles.delivery}>🚚 Free Delivery</Text>
+
+        {/* Add to Cart Button */}
+        <TouchableOpacity style={styles.cartButton}>
+          {/* <FontAwesome name="shopping-cart" size={18} color="#000" /> */}
+        </TouchableOpacity>
       </View>
-
-      {/* Price & Discount */}
-      <View style={styles.priceContainer}>
-        <Text style={styles.price}>AED {product.price}</Text>
-        <Text style={styles.discountedPrice}>AED {product.price * 1.2}</Text>
-      </View>
-
-      <Text style={styles.discount}>20% OFF</Text>
-
-      {/* Free Delivery Badge */}
-      <Text style={styles.delivery}>🚚 Free Delivery</Text>
-
-      {/* Add to Cart Button */}
-      <TouchableOpacity style={styles.cartButton}>
-        {/* <FontAwesome name="shopping-cart" size={18} color="#000" /> */}
-      </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
     width: 160,
-    padding: 10,
+    // padding: 10,
     borderRadius: 10,
     backgroundColor: '#fff',
     shadowColor: '#000',
@@ -65,11 +78,13 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 3,
     marginBottom: 15,
+    borderWidth: 1,
   },
   image: {
     width: '100%',
     height: 140,
-    borderRadius: 8,
+    borderTopLeftRadius: spacing.sm,
+    borderTopRightRadius: spacing.sm,
   },
   badgeContainer: {
     position: 'absolute',

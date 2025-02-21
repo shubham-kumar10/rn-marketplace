@@ -1,44 +1,34 @@
 import React from 'react';
-import {Dimensions, FlatList, Image, Text, View} from 'react-native';
+import {Dimensions, FlatList, Image, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import SearchBar from '../../design-system/organisms/SearchBar';
+import {HOME_SCREEN_UI} from '../../data/category/home/home';
 import Carousel from '../../design-system/organisms/Carousel';
-import ProductCard from '../../design-system/organisms/ProductCard';
-import {categoryWise} from '../../data/categoryWise';
-import {textStyles} from '../../design-system/theme/typography';
+import ProductRail from '../../design-system/organisms/ProductRail';
+import SearchBar from '../../design-system/organisms/SearchBar';
+import spacing from '../../design-system/theme/spacing';
+import Banner from '../../design-system/organisms/Banner';
 
 const Home = () => {
-  const renderItem = ({item}) => (
-    <View>
-      <Image
-        source={{uri: item}}
-        style={{width: Dimensions.get('screen').width, height: 200}}
-      />
-    </View>
-  );
+  const renderBanner = ({item}: {item: string}) => <Banner uri={item} />;
 
   return (
     <SafeAreaView>
       <SearchBar />
-
-      <Carousel
-        data={[
-          'https://f.nooncdn.com/mpcms/EN0001/assets/c6165c5b-0d32-481e-aa75-50f74c626772.png?format=avif',
-          'https://f.nooncdn.com/mpcms/EN0001/assets/e4616a50-41a4-4470-91ab-835ac080fe74.png?format=avif',
-          'https://f.nooncdn.com/mpcms/EN0001/assets/c9180e88-cc11-4613-864c-bf24dac5c327.png?format=avif',
-        ]}
-        renderItem={renderItem}
+      <FlatList
+        data={HOME_SCREEN_UI}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({item}) => {
+          if (item.type === 'BANNER') {
+            return <Carousel data={item.data} renderItem={renderBanner} />;
+          }
+          if (item.type === 'RAIL') {
+            return <ProductRail collection={item.data} />;
+          }
+          return null;
+        }}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{paddingBottom: 3 * spacing.lg}}
       />
-      <View>
-        <View>
-          <Text style={[textStyles.heading]}>Hot Deals on Fashion</Text>
-        </View>
-        <FlatList
-          data={categoryWise}
-          horizontal
-          renderItem={({item}) => <ProductCard product={item} />}
-        />
-      </View>
     </SafeAreaView>
   );
 };
