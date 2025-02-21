@@ -48,6 +48,7 @@ export const neutral = {
 
 export const text = {
   primary: '#212121',
+  disable: '#BDBDBD',
 };
 
 export const error = {
@@ -62,6 +63,18 @@ export const error = {
   error900: '#B71C1C',
 };
 
+export const success = {
+  success100: '#E8F5E9',
+  success200: '#C8E6C9',
+  success300: '#A5D6A7',
+  success400: '#81C784',
+  success500: '#4CAF50',
+  success600: '#43A047',
+  success700: '#388E3C',
+  success800: '#2E7D32',
+  success900: '#1B5E20',
+};
+
 export default {
   blue,
   lightBlue,
@@ -69,4 +82,5 @@ export default {
   neutral,
   text,
   error,
+  success,
 };

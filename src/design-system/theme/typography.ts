@@ -1,3 +1,5 @@
+import {TextStyle} from 'react-native';
+
 export const fontFamily = {
   regular: 'System',
   medium: 'System',
@@ -13,7 +15,7 @@ export const fontSize = {
   xxl: 32,
 };
 
-export const fontWeight = {
+export const fontWeight: Record<string, TextStyle['fontWeight']> = {
   light: '300',
   regular: '400',
   medium: '500',
