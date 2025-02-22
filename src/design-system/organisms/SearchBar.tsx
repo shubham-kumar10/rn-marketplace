@@ -1,20 +1,16 @@
 import React, {useRef} from 'react';
 import {TextInput as RNTextInput, View} from 'react-native';
-import TextInput from '../atoms/TextInput';
-import {AppIcon} from '../atoms/AppIcon';
 import {goBack} from '../../navigation/utils';
+import TextInput from '../atoms/TextInput';
 
-const SearchBar: React.FC = ({leftIcon, onLeftIconPress, setQuery}) => {
+const SearchBar: React.FC = ({leftIcon, setQuery}) => {
   const searchQueryRef = useRef<RNTextInput | null>(null);
-  const query = useRef('');
 
   const clearSearch = () => {
     if (searchQueryRef.current) {
       searchQueryRef.current.clear();
     }
   };
-
-  console.log(searchQueryRef.current);
 
   return (
     <View style={{paddingTop: 16}}>
