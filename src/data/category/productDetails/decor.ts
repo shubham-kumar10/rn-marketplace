@@ -1,0 +1,128 @@
+export const decorProductDetails = [
+  {
+    id: 28,
+    title: 'Sleek Modern Leather Sofa',
+    price: 53,
+    discountPrice: 50,
+    currency: 'USD',
+    description:
+      'Enhance the elegance of your living space with our Sleek Modern Leather Sofa. Designed with a minimalist aesthetic, it features clean lines and a luxurious leather finish.',
+    category: {
+      id: 3,
+      name: 'Furniture',
+      image: 'https://i.imgur.com/Qphac99.jpeg',
+    },
+    images: [
+      'https://i.imgur.com/Qphac99.jpeg',
+      'https://i.imgur.com/dJjpEgG.jpeg',
+      'https://i.imgur.com/MxJyADq.jpeg',
+    ],
+    rating: 4.5,
+    inStock: true,
+    delivery: {
+      type: 'FREE delivery by',
+      estimatedDate: 'Tomorrow, Feb 23',
+      isExpressAvailable: true,
+      expressPrice: 5,
+      expressEstimatedDate: 'Today, Feb 22',
+      returnPolicy: '30 days return policy',
+    },
+    coupons: [
+      {
+        code: 'FURNITURE10',
+        discount: '10% off up to $10',
+        validTill: '2024-03-31',
+        minPurchase: 100,
+        description: 'Valid on all furniture items',
+      },
+    ],
+    preorder: false,
+    emiOptions: {
+      installments: [3, 6],
+      monthlyAmount: 17.67,
+      banks: ['Chase', 'Bank of America'],
+      minPurchase: 100,
+      interestRate: '0%',
+    },
+    dealInfo: {
+      isHotDeal: true,
+      dealEndsIn: '1d 12h',
+      soldCount: 120,
+      remainingStock: 20,
+      discount: {
+        percentage: 6,
+        amount: 3,
+      },
+      type: 'Limited Deal',
+    },
+    highlights: [
+      'Minimalist aesthetic with luxurious leather finish',
+      'Robust metal legs for stability',
+      'Plush cushions ensure comfort',
+      'Perfect for contemporary homes and offices',
+    ],
+  },
+  {
+    id: 29,
+    title: 'Mid-Century Modern Wooden Dining Table',
+    price: 24,
+    discountPrice: 22,
+    currency: 'USD',
+    description:
+      'Elevate your dining room with this sleek Mid-Century Modern dining table, featuring an elegant walnut finish and tapered legs.',
+    category: {
+      id: 3,
+      name: 'Furniture',
+      image: 'https://i.imgur.com/Qphac99.jpeg',
+    },
+    images: [
+      'https://i.imgur.com/DMQHGA0.jpeg',
+      'https://i.imgur.com/qrs9QBg.jpeg',
+      'https://i.imgur.com/XVp8T1I.jpeg',
+    ],
+    rating: 4.7,
+    inStock: true,
+    delivery: {
+      type: 'FREE delivery by',
+      estimatedDate: 'Tomorrow, Feb 23',
+      isExpressAvailable: true,
+      expressPrice: 5,
+      expressEstimatedDate: 'Today, Feb 22',
+      returnPolicy: '30 days return policy',
+    },
+    coupons: [
+      {
+        code: 'DINING5',
+        discount: '5% off',
+        validTill: '2024-06-30',
+        minPurchase: 50,
+        description: 'Valid on dining tables only',
+      },
+    ],
+    preorder: false,
+    emiOptions: {
+      installments: [3],
+      monthlyAmount: 8,
+      banks: ['Wells Fargo'],
+      minPurchase: 50,
+      interestRate: '0%',
+    },
+    dealInfo: {
+      isHotDeal: false,
+      dealEndsIn: '3d 4h',
+      soldCount: 80,
+      remainingStock: 10,
+      discount: {
+        percentage: 8,
+        amount: 2,
+      },
+      type: 'Weekend Special',
+    },
+    highlights: [
+      'Elegant walnut finish',
+      'Tapered legs for a timeless aesthetic',
+      'Sturdy wood construction',
+      'Perfect for intimate dinners',
+    ],
+  },
+];
