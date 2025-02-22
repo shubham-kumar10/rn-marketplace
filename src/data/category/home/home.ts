@@ -33,6 +33,16 @@ export const HOME_SCREEN_UI = [
     },
   },
   {
+    id: 8,
+    type: 'IMAGE',
+    data: {
+      title: {},
+      list: [
+        'https://f.nooncdn.com/mpcms/EN0001/assets/ce4b5480-dcf1-4605-b9bc-5e7bc242be68.png?format=avif',
+      ],
+    },
+  },
+  {
     id: 3,
     type: 'RAIL',
     data: {
@@ -42,6 +52,7 @@ export const HOME_SCREEN_UI = [
       list: RECOMMENDATIONS.slice(1, 6),
     },
   },
+
   {
     id: 4,
     type: 'RAIL',

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: theme.colors.neutral.neutral400,
     borderRadius: 8,
-    paddingHorizontal: theme.spacing.md,
+    // paddingHorizontal: theme.spacing.md,
     backgroundColor: theme.colors.neutral.neutral100,
   },
   input: {
@@ -34,6 +34,6 @@ export const styles = StyleSheet.create({
     marginTop: theme.spacing.xs,
   },
   iconContainer: {
-    paddingHorizontal: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.xs,
   },
 });

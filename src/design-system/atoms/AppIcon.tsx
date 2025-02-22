@@ -1,11 +1,9 @@
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
-Ionicons.loadFont();
+MaterialIcons.loadFont();
 
 const IconSet = {
   Material: MaterialIcons,
-  Ion: Ionicons,
 };
 
 export type IconType = keyof typeof IconSet;

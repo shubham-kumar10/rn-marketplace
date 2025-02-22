@@ -2,8 +2,8 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {AppIcon} from '../../design-system/atoms/AppIcon';
-import Button from '../../design-system/atoms/Button';
+import {AppIcon} from '../../../design-system/atoms/AppIcon';
+import Button from '../../../design-system/atoms/Button';
 import Text from '../../design-system/atoms/Text';
 import {IconButton} from '../../design-system/molecules/IconButton';
 import ImageGallery from '../../design-system/organisms/ImageGallery';
@@ -13,7 +13,7 @@ import {Screens} from '../../navigation/types';
 import {goBack, navigateToScreen} from '../../navigation/utils';
 import {useAppDispatch} from '../../store/hooks';
 import {addToCart} from '../../store/slices/cart/cartSlice';
-import {productDetail} from '../../data/category/products/productDetails';
+import {productDetail} from './mock';
 
 // Add the types later
 const Header = () => (
@@ -47,7 +47,7 @@ const DealInfo = () => (
   <View style={styles.dealContainer}>
     {productDetail.dealInfo.isHotDeal && (
       <View style={styles.hotDealBadge}>
-        <AppIcon name="fire" size={16} color="white" />
+        <AppIcon name="flame" size={16} color="white" />
         <Text style={styles.hotDealText}>HOT Deal</Text>
       </View>
     )}
@@ -63,7 +63,7 @@ const DealInfo = () => (
 const PriceDisplay = () => (
   <View style={styles.priceSection}>
     <View style={styles.priceContainer}>
-      <Text variant="subheading">
+      <Text style={styles.currentPrice}>
         {productDetail.currency} {productDetail.discountPrice}
       </Text>
       <Text style={styles.originalPrice}>
@@ -95,7 +95,7 @@ const DeliveryInfo = () => (
         </Text>
       </View>
     </View>
-    {/* {productDetail.delivery.isExpressAvailable && (
+    {productDetail.delivery.isExpressAvailable && (
       <View style={[styles.deliveryRow, styles.expressDelivery]}>
         <AppIcon name="flash" size={20} color={theme.colors.amber.amber500} />
         <View style={styles.deliveryInfo}>
@@ -108,7 +108,24 @@ const DeliveryInfo = () => (
           +{productDetail.currency} {productDetail.delivery.expressPrice}
         </Text>
       </View>
-    )} */}
+    )}
+  </View>
+);
+
+const SellerInfo = () => (
+  <View style={styles.sellerSection}>
+    <Text style={styles.sectionTitle}>Sold by</Text>
+    <View style={styles.sellerRow}>
+      <Text style={styles.sellerName}>{productDetail.seller.name}</Text>
+      {productDetail.seller.isNoonVerified && (
+        <AppIcon
+          name="checkmark-circle"
+          size={16}
+          color={theme.colors.blue.blue500}
+        />
+      )}
+      <Text style={styles.sellerRating}>{productDetail.seller.rating} ★</Text>
+    </View>
   </View>
 );
 
@@ -188,13 +205,25 @@ const ProductDetailScreen: React.FC = () => {
           <Text style={styles.title}>{productDetail.title}</Text>
           <PriceDisplay />
           <DeliveryInfo />
+          <SellerInfo />
 
+          {/* Bank Offers */}
+          <View style={styles.bankOffers}>
+            <Text style={styles.sectionTitle}>Bank Offers</Text>
+            <Text style={styles.emiText}>
+              Pay {productDetail.currency}{' '}
+              {productDetail.emiOptions.monthlyAmount}/month with{' '}
+              {productDetail.emiOptions.banks.join(', ')}
+            </Text>
+          </View>
+
+          {/* Highlights */}
           <View style={styles.highlights}>
             <Text style={styles.sectionTitle}>Highlights</Text>
             {productDetail.highlights.map((highlight, index) => (
               <View key={index} style={styles.highlightRow}>
                 <AppIcon
-                  name="check-circle-outline"
+                  name="checkmark-circle"
                   size={16}
                   color={theme.colors.blue.blue500}
                 />
