@@ -13,7 +13,9 @@ import {Screens} from '../../navigation/types';
 import {goBack, navigateToScreen} from '../../navigation/utils';
 import {useAppDispatch} from '../../store/hooks';
 import {addToCart} from '../../store/slices/cart/cartSlice';
-import {productDetail} from '../../data/category/products/productDetails';
+// import {productDetail} from '../../data/category/products/productDetails';
+import {productApi} from '../../core/api/productApi';
+import {useFetch} from '../../core/api/usefetch';
 
 // Add the types later
 const Header = () => (
@@ -43,7 +45,7 @@ const Header = () => (
   </View>
 );
 
-const DealInfo = () => (
+const DealInfo = ({productDetail}) => (
   <View style={styles.dealContainer}>
     {productDetail.dealInfo.isHotDeal && (
       <View style={styles.hotDealBadge}>
@@ -60,7 +62,7 @@ const DealInfo = () => (
   </View>
 );
 
-const PriceDisplay = () => (
+const PriceDisplay = ({productDetail}) => (
   <View style={styles.priceSection}>
     <View style={styles.priceContainer}>
       <Text variant="subheading">
@@ -84,7 +86,7 @@ const PriceDisplay = () => (
   </View>
 );
 
-const DeliveryInfo = () => (
+const DeliveryInfo = ({productDetail}) => (
   <View style={styles.deliverySection}>
     <View style={styles.deliveryRow}>
       <AppIcon name="truck" size={20} color={theme.colors.neutral.neutral600} />
@@ -145,7 +147,21 @@ const FixedFooter: React.FC<{
   </View>
 );
 
-const ProductDetailScreen: React.FC = () => {
+const ProductDetailScreen: React.FC = ({route}) => {
+  const {productId} = route.params;
+
+  console.log(
+    'productId',
+    productId,
+    productApi.getProductById(productId).then(data => console.log('YI', data)),
+  );
+
+  const {
+    data: productDetail,
+    isLoading,
+    error,
+  } = useFetch(() => productApi.getProductById(productId));
+
   const dispatch = useAppDispatch();
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -178,16 +194,28 @@ const ProductDetailScreen: React.FC = () => {
     }, 500);
   };
 
+  if (isLoading || !productDetail) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <Header />
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <Header />
       <ScrollView style={styles.container}>
         <ImageGallery images={productDetail.images} />
         <View style={styles.content}>
-          <DealInfo />
+          <Text>{productDetail.category.name}</Text>
           <Text style={styles.title}>{productDetail.title}</Text>
-          <PriceDisplay />
-          <DeliveryInfo />
+          <DealInfo productDetail={productDetail} />
+
+          <PriceDisplay productDetail={productDetail} />
+
+          <DeliveryInfo productDetail={productDetail} />
+          <Text variant="caption">{productDetail.description}</Text>
 
           <View style={styles.highlights}>
             <Text style={styles.sectionTitle}>Highlights</Text>
