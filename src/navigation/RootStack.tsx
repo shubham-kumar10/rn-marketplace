@@ -1,7 +1,7 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductDetailScreen from '../screens/detail/Product.screen';
 import BottomTabs from './BottomTabs';
-import {RootStackParamList, Screens} from './types'; // Import Enum & Types
+import { RootStackParamList, Screens } from './types'; // Import Enum & Types
 import CartReview from '../screens/cartReview/CartReview';
 import ConfirmationScreen from '../screens/confirmation/Confirmation.screen';
 
@@ -13,9 +13,10 @@ export const MainStack = () => {
       screenOptions={{
         headerShadowVisible: false,
         animation: 'slide_from_right',
-        contentStyle: {backgroundColor: 'white'},
+        contentStyle: { backgroundColor: 'white' },
         headerShown: false,
-      }}>
+      }}
+    >
       <Stack.Screen name={Screens.ROOT} component={BottomTabs} />
       <Stack.Screen
         name={Screens.PRODUCT_DETAILS}

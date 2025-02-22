@@ -1,11 +1,11 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import React from 'react';
-import {IMAGE_HEIGHT_MEDIUM, WINDOW_WIDTH} from '../../constants.ts';
+import { IMAGE_HEIGHT_MEDIUM, WINDOW_WIDTH } from '../../constants.ts';
 
-const Banner = ({uri}) => {
+const Banner = ({ uri }) => {
   return (
     <View>
-      <Image source={{uri}} style={styles.image} />
+      <Image source={{ uri }} style={styles.image} />
     </View>
   );
 };

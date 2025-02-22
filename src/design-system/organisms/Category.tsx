@@ -1,9 +1,9 @@
 // src/components/molecules/CategoryCircle.tsx
 import React from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '../atoms/Text';
 import theme from '../theme';
-import {Category} from '../../data/type';
+import { Category } from '../../data/type';
 
 interface CategoryCircleProps {
   category: Category;
@@ -19,11 +19,12 @@ export const CategoryCircle: React.FC<CategoryCircleProps> = ({
   return (
     <TouchableOpacity
       onPress={() => onPress?.(category)}
-      style={styles.container}>
-      <View style={[styles.imageContainer, {width: size, height: size}]}>
+      style={styles.container}
+    >
+      <View style={[styles.imageContainer, { width: size, height: size }]}>
         <Image
-          source={{uri: category.image}}
-          style={[styles.image, {width: size, height: size}]}
+          source={{ uri: category.image }}
+          style={[styles.image, { width: size, height: size }]}
         />
       </View>
       <Text style={styles.name} numberOfLines={1}>

@@ -1,3 +1,3 @@
-import {decorProductDetails} from './decor';
+import { decorProductDetails } from './decor';
 
 export const PRODUCT_DETAILS = [...decorProductDetails];

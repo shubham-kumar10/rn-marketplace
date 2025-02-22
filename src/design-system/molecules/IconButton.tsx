@@ -1,11 +1,11 @@
 // src/design-system/molecules/IconButton.tsx
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View, ViewStyle} from 'react-native';
-import {IconProps} from 'react-native-vector-icons/Icon';
-import {AppIcon} from '../atoms/AppIcon';
+import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { IconProps } from 'react-native-vector-icons/Icon';
+import { AppIcon } from '../atoms/AppIcon';
 import Text from '../atoms/Text';
 import theme from '../theme';
-import {Badge} from './Badge';
+import { Badge } from './Badge';
 
 interface IconButtonProps extends IconProps {
   text?: string;
@@ -26,7 +26,8 @@ export const IconButton = ({
   <TouchableOpacity
     onPress={onPress}
     style={[styles.container, containerStyle]}
-    hitSlop={{top: 10, right: 10, bottom: 10, left: 10}}>
+    hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
+  >
     <View style={styles.iconContainer}>
       <AppIcon name={name} size={size} color={color} />
       {badgeCount !== undefined && <Badge count={badgeCount} />}

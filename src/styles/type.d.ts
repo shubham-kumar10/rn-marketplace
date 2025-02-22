@@ -1,5 +1,5 @@
 // types.ts
-import {TextStyle, ViewStyle} from 'react-native';
+import { TextStyle, ViewStyle } from 'react-native';
 
 type KeyUnion<T> = keyof T;
 

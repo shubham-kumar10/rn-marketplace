@@ -1,21 +1,27 @@
 import React from 'react';
-import {Alert, FlatList, Pressable, TouchableOpacity, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {HOME_SCREEN_UI} from '../../data/category/home/home';
-import {AppIcon} from '../../design-system/atoms/AppIcon';
+import {
+  Alert,
+  FlatList,
+  Pressable,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { HOME_SCREEN_UI } from '../../data/category/home/home';
+import { AppIcon } from '../../design-system/atoms/AppIcon';
 import Text from '../../design-system/atoms/Text';
 import Banner from '../../design-system/organisms/Banner';
 import Carousel from '../../design-system/organisms/Carousel';
 import ProductRail from '../../design-system/organisms/ProductRail';
 import theme from '../../design-system/theme';
 import spacing from '../../design-system/theme/spacing';
-import {Screens} from '../../navigation/types';
-import {navigateToScreen} from '../../navigation/utils';
+import { Screens } from '../../navigation/types';
+import { navigateToScreen } from '../../navigation/utils';
+import GlobalStyles from '../../styles/global';
 
 const LOCATION = 'Dubai Mall, Dubai';
 const Home = () => {
-  const renderBanner = ({item}: {item: string}) => <Banner uri={item} />;
-
+  const renderBanner = ({ item }: { item: string }) => <Banner uri={item} />;
   return (
     <SafeAreaView>
       <TouchableOpacity
@@ -29,10 +35,11 @@ const Home = () => {
           flexDirection: 'row',
           alignItems: 'center',
           marginHorizontal: theme.spacing.md,
-        }}>
+        }}
+      >
         <AppIcon name="map-marker" size={17} />
-        <Text style={{alignItems: 'flex-end', marginHorizontal: 5}}>
-          <Text style={{fontWeight: theme.typography.fontWeight.medium}}>
+        <Text style={{ alignItems: 'flex-end', marginHorizontal: 5 }}>
+          <Text style={{ fontWeight: theme.typography.fontWeight.medium }}>
             {LOCATION}
           </Text>
         </Text>
@@ -45,7 +52,8 @@ const Home = () => {
           alignItems: 'center',
           marginBottom: theme.spacing.md,
           marginHorizontal: theme.spacing.md,
-        }}>
+        }}
+      >
         <Pressable
           style={{
             paddingHorizontal: 10,
@@ -59,10 +67,11 @@ const Home = () => {
             flexGrow: 1,
           }}
           onPress={() =>
-            navigateToScreen(Screens.ROOT, {screen: Screens.SEARCH})
-          }>
+            navigateToScreen(Screens.ROOT, { screen: Screens.SEARCH })
+          }
+        >
           <AppIcon name="magnify" color={theme.colors.neutral.neutral700} />
-          <Text style={{marginLeft: 5}} color={'disable'}>
+          <Text style={{ marginLeft: 5 }} color={'disable'}>
             Search for ''
           </Text>
         </Pressable>
@@ -76,7 +85,8 @@ const Home = () => {
             padding: 8,
             borderColor: theme.colors.neutral.neutral500,
             backgroundColor: theme.colors.neutral.neutral300,
-          }}>
+          }}
+        >
           <AppIcon
             name="heart-outline"
             size={20}
@@ -88,7 +98,7 @@ const Home = () => {
       <FlatList
         data={HOME_SCREEN_UI}
         keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => {
+        renderItem={({ item }) => {
           if (item.type === 'BANNER') {
             return <Carousel data={item.data} renderItem={renderBanner} />;
           }
@@ -101,7 +111,7 @@ const Home = () => {
           return null;
         }}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 3 * spacing.lg}}
+        contentContainerStyle={{ paddingBottom: 3 * spacing.lg }}
       />
     </SafeAreaView>
   );

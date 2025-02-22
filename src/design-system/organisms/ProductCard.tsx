@@ -7,9 +7,9 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {Product} from '../../data/type';
-import {Screens} from '../../navigation/types';
-import {navigateToScreen} from '../../navigation/utils';
+import { Product } from '../../data/type';
+import { Screens } from '../../navigation/types';
+import { navigateToScreen } from '../../navigation/utils';
 
 interface ProductCardProps {
   product: Product;
@@ -20,7 +20,7 @@ const CARD_WIDTH = 170; // Fixed card width
 const IMAGE_ASPECT_RATIO = 1; // 1:1 aspect ratio for image
 const IMAGE_HEIGHT = CARD_WIDTH * IMAGE_ASPECT_RATIO;
 
-import {AppIcon} from '../atoms/AppIcon';
+import { AppIcon } from '../atoms/AppIcon';
 import theme from '../theme';
 
 interface ProductCardProps {
@@ -129,16 +129,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <TouchableOpacity
       onPress={() =>
-        navigateToScreen(Screens.PRODUCT_DETAILS, {productId: product.id})
+        navigateToScreen(Screens.PRODUCT_DETAILS, { productId: product.id })
       }
-      style={[styles.container, style]}>
+      style={[styles.container, style]}
+    >
       <View style={styles.card}>
         <View style={styles.imageContainer}>
-          <Image source={{uri: product.images?.[0]}} style={styles.image} />
+          <Image source={{ uri: product.images?.[0] }} style={styles.image} />
           {renderBadges()}
           <TouchableOpacity
             style={styles.wishlistButton}
-            onPress={handleWishlistPress}>
+            onPress={handleWishlistPress}
+          >
             <AppIcon
               name="heart-outline"
               size={20}

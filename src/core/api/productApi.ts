@@ -1,7 +1,7 @@
-import {ALL_CATEGORIES} from '../../data/category/categories/categories';
-import {PRODUCT_DETAILS} from '../../data/category/productDetails/productDetails';
-import {Category, ProductDetails} from '../../data/type';
-import {mockDelay} from '../../utils/utils';
+import { ALL_CATEGORIES } from '../../data/category/categories/categories';
+import { PRODUCT_DETAILS } from '../../data/category/productDetails/productDetails';
+import { Category, ProductDetails } from '../../data/type';
+import { mockDelay } from '../../utils/utils';
 
 export const productApi = {
   getProductById: async (id: number): Promise<ProductDetails> => {

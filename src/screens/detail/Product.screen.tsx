@@ -1,21 +1,21 @@
 // src/screens/detail/Product.screen.tsx
-import React, {useState} from 'react';
-import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {AppIcon} from '../../design-system/atoms/AppIcon';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { AppIcon } from '../../design-system/atoms/AppIcon';
 import Button from '../../design-system/atoms/Button';
 import Text from '../../design-system/atoms/Text';
-import {IconButton} from '../../design-system/molecules/IconButton';
+import { IconButton } from '../../design-system/molecules/IconButton';
 import ImageGallery from '../../design-system/organisms/ImageGallery';
 import SearchBar from '../../design-system/organisms/SearchBar';
 import theme from '../../design-system/theme';
-import {Screens} from '../../navigation/types';
-import {goBack, navigateToScreen} from '../../navigation/utils';
-import {useAppDispatch} from '../../store/hooks';
-import {addToCart} from '../../store/slices/cart/cartSlice';
+import { Screens } from '../../navigation/types';
+import { goBack, navigateToScreen } from '../../navigation/utils';
+import { useAppDispatch } from '../../store/hooks';
+import { addToCart } from '../../store/slices/cart/cartSlice';
 // import {productDetail} from '../../data/category/products/productDetails';
-import {productApi} from '../../core/api/productApi';
-import {useFetch} from '../../core/api/usefetch';
+import { productApi } from '../../core/api/productApi';
+import { useFetch } from '../../core/api/usefetch';
 
 // Add the types later
 const Header = () => (
@@ -39,13 +39,13 @@ const Header = () => (
     <IconButton
       name="cart-outline"
       size={24}
-      onPress={() => navigateToScreen(Screens.ROOT, {screen: Screens.CART})}
+      onPress={() => navigateToScreen(Screens.ROOT, { screen: Screens.CART })}
       text="Cart"
     />
   </View>
 );
 
-const DealInfo = ({productDetail}) => (
+const DealInfo = ({ productDetail }) => (
   <View style={styles.dealContainer}>
     {productDetail.dealInfo.isHotDeal && (
       <View style={styles.hotDealBadge}>
@@ -62,7 +62,7 @@ const DealInfo = ({productDetail}) => (
   </View>
 );
 
-const PriceDisplay = ({productDetail}) => (
+const PriceDisplay = ({ productDetail }) => (
   <View style={styles.priceSection}>
     <View style={styles.priceContainer}>
       <Text variant="subheading">
@@ -86,7 +86,7 @@ const PriceDisplay = ({productDetail}) => (
   </View>
 );
 
-const DeliveryInfo = ({productDetail}) => (
+const DeliveryInfo = ({ productDetail }) => (
   <View style={styles.deliverySection}>
     <View style={styles.deliveryRow}>
       <AppIcon name="truck" size={20} color={theme.colors.neutral.neutral600} />
@@ -119,7 +119,7 @@ const FixedFooter: React.FC<{
   onQuantityChange: (change: number) => void;
   onAddToCart: () => void;
   isAddingToCart: boolean;
-}> = ({quantity, onQuantityChange, onAddToCart, isAddingToCart}) => (
+}> = ({ quantity, onQuantityChange, onAddToCart, isAddingToCart }) => (
   <View style={styles.footer}>
     <View style={styles.quantitySection}>
       <TouchableOpacity
@@ -127,13 +127,15 @@ const FixedFooter: React.FC<{
         style={[
           styles.quantityButton,
           quantity === 1 && styles.quantityButtonDisabled,
-        ]}>
+        ]}
+      >
         <AppIcon name="minus" size={20} />
       </TouchableOpacity>
       <Text style={styles.quantityText}>{quantity}</Text>
       <TouchableOpacity
         onPress={() => onQuantityChange(1)}
-        style={styles.quantityButton}>
+        style={styles.quantityButton}
+      >
         <AppIcon name="plus" size={20} />
       </TouchableOpacity>
     </View>
@@ -147,8 +149,8 @@ const FixedFooter: React.FC<{
   </View>
 );
 
-const ProductDetailScreen: React.FC = ({route}) => {
-  const {productId} = route.params;
+const ProductDetailScreen: React.FC = ({ route }) => {
+  const { productId } = route.params;
 
   console.log(
     'productId',

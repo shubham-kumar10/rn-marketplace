@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   TextInputProps,
 } from 'react-native';
-import {styles} from './TextInput.styles';
-import {AppIcon} from './AppIcon';
+import { styles } from './TextInput.styles';
+import { AppIcon } from './AppIcon';
 
 interface Props extends TextInputProps {
   label?: string;
@@ -39,7 +39,8 @@ const TextInput: React.FC<Props> = ({
         {leftIcon && (
           <TouchableOpacity
             onPress={onLeftIconPress}
-            style={styles.iconContainer}>
+            style={styles.iconContainer}
+          >
             <AppIcon name={leftIcon} />
           </TouchableOpacity>
         )}
@@ -53,7 +54,8 @@ const TextInput: React.FC<Props> = ({
         {rightIcon && (
           <TouchableOpacity
             onPress={onRightIconPress}
-            style={styles.iconContainer}>
+            style={styles.iconContainer}
+          >
             <AppIcon name={rightIcon} />
           </TouchableOpacity>
         )}

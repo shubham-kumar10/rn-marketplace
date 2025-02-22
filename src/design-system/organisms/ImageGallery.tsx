@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
-import {FlatList, Image, StyleSheet, View} from 'react-native';
-import {SCREEN_WIDTH} from '../../constants.ts';
+import React, { useState } from 'react';
+import { FlatList, Image, StyleSheet, View } from 'react-native';
+import { SCREEN_WIDTH } from '../../constants.ts';
 
 interface ImageGalleryProps {
   images: string[];
 }
 
-const ImageGallery: React.FC<ImageGalleryProps> = ({images}) => {
+const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onScroll = (event: any) => {
@@ -23,8 +23,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({images}) => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => (
-          <Image source={{uri: item}} style={styles.image} />
+        renderItem={({ item }) => (
+          <Image source={{ uri: item }} style={styles.image} />
         )}
         onScroll={onScroll}
       />

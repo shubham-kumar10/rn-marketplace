@@ -1,10 +1,10 @@
 // src/screens/detail/components/Header.tsx
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {IconButton} from '../../../design-system/molecules/IconButton';
+import { StyleSheet, View } from 'react-native';
+import { IconButton } from '../../../design-system/molecules/IconButton';
 import SearchBar from '../../../design-system/organisms/SearchBar';
-import {goBack, navigateToScreen} from '../../../navigation/utils';
-import {Screens} from '../../../navigation/types';
+import { goBack, navigateToScreen } from '../../../navigation/utils';
+import { Screens } from '../../../navigation/types';
 import theme from '../../../design-system/theme';
 
 export const Header = () => (
@@ -28,7 +28,7 @@ export const Header = () => (
     <IconButton
       name="cart-outline"
       size={24}
-      onPress={() => navigateToScreen(Screens.ROOT, {screen: Screens.CART})}
+      onPress={() => navigateToScreen(Screens.ROOT, { screen: Screens.CART })}
       text="Cart"
     />
   </View>

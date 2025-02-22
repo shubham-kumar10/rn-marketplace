@@ -15,6 +15,6 @@ interface IconProps {
   color?: string;
 }
 
-export const AppIcon = ({name, size = 24, color = 'black'}: IconProps) => {
+export const AppIcon = ({ name, size = 24, color = 'black' }: IconProps) => {
   return <MaterialIcons name={name} size={size} color={color} />;
 };
