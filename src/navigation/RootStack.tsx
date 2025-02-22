@@ -11,7 +11,6 @@ export const MainStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShadowVisible: false,
         animation: 'slide_from_right',
         contentStyle: { backgroundColor: 'white' },
         headerShown: false,

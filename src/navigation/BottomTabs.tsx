@@ -43,7 +43,12 @@ function BottomTabs() {
         ),
         tabBarActiveTintColor: theme.colors.blue.blue500,
         tabBarInactiveTintColor: theme.colors.neutral.neutral700,
-        tabBarStyle: { backgroundColor: 'white', height: 60 },
+        tabBarStyle: {
+          backgroundColor: 'white',
+          height: 60,
+          borderWidth: 2,
+          borderColor: 'red',
+        },
         ...getTabBarBadge(route.name),
       })}
     >

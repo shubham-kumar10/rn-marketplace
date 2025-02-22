@@ -4,7 +4,7 @@ import React from 'react';
 const NoResultsFound = () => {
   return (
     <View>
-      <Text>NoResultsFound</Text>
+      <Text>No Results Found</Text>
     </View>
   );
 };

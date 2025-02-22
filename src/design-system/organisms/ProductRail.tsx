@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import spacing from '../theme/spacing';
 import { textStyles } from '../theme/typography';
-import ProductCard from './ProductCard';
+import ProductCard from '../molecules/ProductCard';
 
 const ProductRail = ({ collection }) => {
   const { title, list } = collection;
