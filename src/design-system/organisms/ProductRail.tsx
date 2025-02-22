@@ -1,11 +1,11 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import spacing from '../theme/spacing';
-import {textStyles} from '../theme/typography';
+import { textStyles } from '../theme/typography';
 import ProductCard from './ProductCard';
 
-const ProductRail = ({collection}) => {
-  const {title, list} = collection;
+const ProductRail = ({ collection }) => {
+  const { title, list } = collection;
 
   return (
     <View style={styles.container}>
@@ -17,7 +17,7 @@ const ProductRail = ({collection}) => {
       <FlatList
         horizontal
         data={list}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <ProductCard product={item} style={styles.product} />
         )}
         showsHorizontalScrollIndicator={false}

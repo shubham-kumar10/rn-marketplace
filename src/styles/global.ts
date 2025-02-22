@@ -1,225 +1,90 @@
-// globalStyles.ts
-import {StyleSheet, ViewStyle, TextStyle} from 'react-native';
-import theme from '../design-system/theme';
+import { StyleSheet } from 'react-native';
 
-type SpacingKeys = keyof typeof theme.spacing;
-type Directions =
-  | ''
-  | 'Top'
-  | 'Bottom'
-  | 'Left'
-  | 'Right'
-  | 'Horizontal'
-  | 'Vertical';
+const GlobalStyles = StyleSheet.create({
+  paddingXs: { padding: 4 },
+  paddingSm: { padding: 8 },
+  paddingMd: { padding: 16 },
+  paddingLg: { padding: 24 },
+  paddingXl: { padding: 32 },
 
-// Helper function to create spacing style key
-const createSpacingStyleKey = (
-  property: 'margin' | 'padding',
-  direction: Directions,
-  size: SpacingKeys,
-) => {
-  if (direction === '') {
-    return `${property}${size.charAt(0).toUpperCase() + size.slice(1)}`;
-  }
-  return `${property}${direction}${
-    size.charAt(0).toUpperCase() + size.slice(1)
-  }`;
-};
+  paddingTopXs: { paddingTop: 4 },
+  paddingTopSm: { paddingTop: 8 },
+  paddingTopMd: { paddingTop: 16 },
+  paddingTopLg: { paddingTop: 24 },
+  paddingTopXl: { paddingTop: 32 },
 
-// Create spacing styles object
-const createSpacingStyles = () => {
-  const spacingStyles: Record<string, ViewStyle> = {};
-  const properties = ['margin', 'padding'] as const;
-  const directions: Directions[] = [
-    '',
-    'Top',
-    'Bottom',
-    'Left',
-    'Right',
-    'Horizontal',
-    'Vertical',
-  ];
+  paddingBottomXs: { paddingBottom: 4 },
+  paddingBottomSm: { paddingBottom: 8 },
+  paddingBottomMd: { paddingBottom: 16 },
+  paddingBottomLg: { paddingBottom: 24 },
+  paddingBottomXl: { paddingBottom: 32 },
 
-  properties.forEach(property => {
-    directions.forEach(direction => {
-      Object.entries(theme.spacing).forEach(([size, value]) => {
-        const key = createSpacingStyleKey(
-          property,
-          direction,
-          size as SpacingKeys,
-        );
+  paddingLeftXs: { paddingLeft: 4 },
+  paddingLeftSm: { paddingLeft: 8 },
+  paddingLeftMd: { paddingLeft: 16 },
+  paddingLeftLg: { paddingLeft: 24 },
+  paddingLeftXl: { paddingLeft: 32 },
 
-        if (direction === '') {
-          spacingStyles[key] = {[property]: value};
-        } else if (direction === 'Horizontal' || direction === 'Vertical') {
-          spacingStyles[key] = {[`${property}${direction}`]: value};
-        } else {
-          spacingStyles[key] = {[`${property}${direction}`]: value};
-        }
-      });
-    });
-  });
+  paddingRightXs: { paddingRight: 4 },
+  paddingRightSm: { paddingRight: 8 },
+  paddingRightMd: { paddingRight: 16 },
+  paddingRightLg: { paddingRight: 24 },
+  paddingRightXl: { paddingRight: 32 },
 
-  return spacingStyles;
-};
+  paddingHorizontalXs: { paddingHorizontal: 4 },
+  paddingHorizontalSm: { paddingHorizontal: 8 },
+  paddingHorizontalMd: { paddingHorizontal: 16 },
+  paddingHorizontalLg: { paddingHorizontal: 24 },
+  paddingHorizontalXl: { paddingHorizontal: 32 },
 
-// Create text styles with all color variations
-const createTextStyles = () => {
-  const textStyles: Record<string, TextStyle> = {};
+  paddingVerticalXs: { paddingVertical: 4 },
+  paddingVerticalSm: { paddingVertical: 8 },
+  paddingVerticalMd: { paddingVertical: 16 },
+  paddingVerticalLg: { paddingVertical: 24 },
+  paddingVerticalXl: { paddingVertical: 32 },
 
-  Object.entries(theme.typography.textStyles).forEach(([styleKey, style]) => {
-    // Base text style
-    textStyles[styleKey] = style;
+  marginXs: { margin: 4 },
+  marginSm: { margin: 8 },
+  marginMd: { margin: 16 },
+  marginLg: { margin: 24 },
+  marginXl: { margin: 32 },
 
-    // Add color variations
-    Object.entries(theme.colors).forEach(([colorFamily, colorShades]) => {
-      if (typeof colorShades === 'object') {
-        Object.entries(colorShades).forEach(([shade, color]) => {
-          const key = `${styleKey}${
-            colorFamily.charAt(0).toUpperCase() + colorFamily.slice(1)
-          }${shade}`;
-          textStyles[key] = {
-            ...style,
-            color,
-          };
-        });
-      }
-    });
-  });
+  marginTopXs: { marginTop: 4 },
+  marginTopSm: { marginTop: 8 },
+  marginTopMd: { marginTop: 16 },
+  marginTopLg: { marginTop: 24 },
+  marginTopXl: { marginTop: 32 },
 
-  return textStyles;
-};
+  marginBottomXs: { marginBottom: 4 },
+  marginBottomSm: { marginBottom: 8 },
+  marginBottomMd: { marginBottom: 16 },
+  marginBottomLg: { marginBottom: 24 },
+  marginBottomXl: { marginBottom: 32 },
 
-// Create background color styles
-const createBackgroundStyles = () => {
-  const bgStyles: Record<string, ViewStyle> = {};
+  marginLeftXs: { marginLeft: 4 },
+  marginLeftSm: { marginLeft: 8 },
+  marginLeftMd: { marginLeft: 16 },
+  marginLeftLg: { marginLeft: 24 },
+  marginLeftXl: { marginLeft: 32 },
 
-  Object.entries(theme.colors).forEach(([colorFamily, colorShades]) => {
-    if (typeof colorShades === 'object') {
-      Object.entries(colorShades).forEach(([shade, color]) => {
-        const key = `bg${
-          colorFamily.charAt(0).toUpperCase() + colorFamily.slice(1)
-        }${shade}`;
-        bgStyles[key] = {
-          backgroundColor: color,
-        };
-      });
-    }
-  });
+  marginRightXs: { marginRight: 4 },
+  marginRightSm: { marginRight: 8 },
+  marginRightMd: { marginRight: 16 },
+  marginRightLg: { marginRight: 24 },
+  marginRightXl: { marginRight: 32 },
 
-  return bgStyles;
-};
+  marginHorizontalXs: { marginHorizontal: 4 },
+  marginHorizontalSm: { marginHorizontal: 8 },
+  marginHorizontalMd: { marginHorizontal: 16 },
+  marginHorizontalLg: { marginHorizontal: 24 },
+  marginHorizontalXl: { marginHorizontal: 32 },
 
-export const GlobalStyles = StyleSheet.create({
-  // Layout styles
-  flex1: {
-    flex: 1,
-  },
-  flexGrow1: {
-    flexGrow: 1,
-  },
-  flexRow: {
-    flexDirection: 'row',
-  },
-  flexColumn: {
-    flexDirection: 'column',
-  },
-  justifyCenter: {
-    justifyContent: 'center',
-  },
-  justifyStart: {
-    justifyContent: 'flex-start',
-  },
-  justifyEnd: {
-    justifyContent: 'flex-end',
-  },
-  justifyBetween: {
-    justifyContent: 'space-between',
-  },
-  justifyAround: {
-    justifyContent: 'space-around',
-  },
-  alignCenter: {
-    alignItems: 'center',
-  },
-  alignStart: {
-    alignItems: 'flex-start',
-  },
-  alignEnd: {
-    alignItems: 'flex-end',
-  },
-
-  // Border radius
-  radiusSm: {
-    borderRadius: 4,
-  },
-  radiusMd: {
-    borderRadius: 8,
-  },
-  radiusLg: {
-    borderRadius: 12,
-  },
-  radiusXl: {
-    borderRadius: 16,
-  },
-  radiusRound: {
-    borderRadius: 999,
-  },
-
-  // Common layout styles
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.neutral.neutral100,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  shadow: {
-    shadowColor: theme.colors.neutral.neutral900,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-
-  // Generated styles
-  ...createSpacingStyles(),
-  ...createTextStyles(),
-  ...createBackgroundStyles(),
+  marginVerticalXs: { marginVertical: 4 },
+  marginVerticalSm: { marginVertical: 8 },
+  marginVerticalMd: { marginVertical: 16 },
+  marginVerticalLg: { marginVertical: 24 },
+  marginVerticalXl: { marginVertical: 32 },
 });
 
-// Type for all available style keys
-export type GlobalStylesKeys = keyof typeof styles;
-
-// Example usage:
-/*
-import { styles } from './globalStyles';
-
-const MyComponent = () => {
-  return (
-    <View style={[
-      styles.container,
-      styles.marginTopSm,      // Works with autocomplete
-      styles.paddingHorizontalMd,
-      styles.bgBlue500
-    ]}>
-      <Text style={[
-        styles.heading,
-        styles.marginBottomMd
-      ]}>
-        Hello World
-      </Text>
-    </View>
-  );
-};
-*/
-
+export type GlobalStylesKeys = keyof typeof GlobalStyles;
 export default GlobalStyles;

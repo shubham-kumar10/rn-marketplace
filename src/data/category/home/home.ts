@@ -1,6 +1,6 @@
-import {fashion} from '../products/fashion';
-import {RECOMMENDATIONS} from '../products/recommended';
-import {TRENDING} from '../products/trending';
+import { fashion } from '../products/fashion';
+import { RECOMMENDATIONS } from '../products/recommended';
+import { TRENDING } from '../products/trending';
 
 export const HOME_SCREEN_UI = [
   {

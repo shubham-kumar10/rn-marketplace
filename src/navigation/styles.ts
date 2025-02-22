@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import theme from '../design-system/theme';
 
 export const bottomSheetStyles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import {CategorizedProduct} from './type';
+import { CategorizedProduct } from './type';
 
 export const categoryWise: CategorizedProduct = [
   {

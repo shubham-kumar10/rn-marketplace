@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 interface FetchState<T> {
   data: T | null;
@@ -16,11 +16,11 @@ export function useFetch<T>(fetchFn: () => Promise<T>) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setState(prev => ({...prev, isLoading: true}));
+        setState(prev => ({ ...prev, isLoading: true }));
         const result = await fetchFn();
-        setState({data: result, isLoading: false, error: null});
+        setState({ data: result, isLoading: false, error: null });
       } catch (error) {
-        setState({data: null, isLoading: false, error: error as Error});
+        setState({ data: null, isLoading: false, error: error as Error });
       }
     };
 

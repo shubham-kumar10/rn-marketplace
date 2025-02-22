@@ -1,7 +1,7 @@
 // types.ts
 export type RootStackParamList = {
   Root: undefined;
-  ProductDetails: {productId: string};
+  ProductDetails: { productId: string };
   CartReview: undefined;
   Confirmation: undefined;
 };

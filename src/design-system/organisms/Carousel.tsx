@@ -1,8 +1,8 @@
-import React, {useRef, useCallback, useEffect} from 'react';
-import {View, FlatList, Dimensions, StyleSheet, Text} from 'react-native';
+import React, { useRef, useCallback, useEffect } from 'react';
+import { View, FlatList, Dimensions, StyleSheet, Text } from 'react-native';
 import spacing from '../theme/spacing';
 
-const {width: WINDOW_WIDTH} = Dimensions.get('window');
+const { width: WINDOW_WIDTH } = Dimensions.get('window');
 const ITEM_WIDTH = WINDOW_WIDTH;
 const ITEM_SPACING = (WINDOW_WIDTH - ITEM_WIDTH) / 2;
 
@@ -75,9 +75,9 @@ const Carousel = ({
   );
 
   const renderItemWrapper = useCallback(
-    ({item, index}) => (
-      <View style={[styles.itemContainer, {width: itemWidth}]}>
-        {renderItem({item, index})}
+    ({ item, index }) => (
+      <View style={[styles.itemContainer, { width: itemWidth }]}>
+        {renderItem({ item, index })}
       </View>
     ),
     [itemWidth, renderItem],
@@ -86,7 +86,7 @@ const Carousel = ({
   const keyExtractor = useCallback((_, index) => index.toString(), []);
 
   const contentContainerStyle = showPartialItems
-    ? [styles.contentContainer, {paddingHorizontal: ITEM_SPACING}]
+    ? [styles.contentContainer, { paddingHorizontal: ITEM_SPACING }]
     : styles.contentContainer;
 
   return (

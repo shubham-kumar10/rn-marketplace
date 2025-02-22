@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text as RNText, TextProps, StyleSheet} from 'react-native';
+import { Text as RNText, TextProps, StyleSheet } from 'react-native';
 import theme from '../theme';
 
 interface Props extends TextProps {
@@ -18,7 +18,7 @@ const Text: React.FC<Props> = ({
       style={[
         styles.text,
         theme.typography.textStyles[variant],
-        {color: theme.colors.text[color]},
+        { color: theme.colors.text[color] },
         style,
       ]}
       {...props}

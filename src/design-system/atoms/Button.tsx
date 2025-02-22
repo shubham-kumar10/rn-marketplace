@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet, ViewStyle} from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, ViewStyle } from 'react-native';
 import theme from '../theme';
 
 interface Props {
@@ -22,7 +22,8 @@ const Button: React.FC<Props> = ({
         styles.button,
         variant === 'secondary' ? styles.secondary : styles.primary,
         style,
-      ]}>
+      ]}
+    >
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );

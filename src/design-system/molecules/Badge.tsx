@@ -1,6 +1,6 @@
 // src/design-system/molecules/Badge.tsx
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Text from '../atoms/Text';
 import theme from '../theme';
 
@@ -9,7 +9,7 @@ interface BadgeProps {
   maxCount?: number;
 }
 
-export const Badge = ({count, maxCount = 99}: BadgeProps) => {
+export const Badge = ({ count, maxCount = 99 }: BadgeProps) => {
   if (count === 0) return null;
 
   const displayCount = count > maxCount ? `${maxCount}+` : count.toString();

@@ -1,17 +1,17 @@
 // src/screens/cart/CartReview.screen.tsx
-import React, {useState} from 'react';
-import {Image, ScrollView, StyleSheet, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {AppIcon} from '../../design-system/atoms/AppIcon';
+import React, { useState } from 'react';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { AppIcon } from '../../design-system/atoms/AppIcon';
 import Button from '../../design-system/atoms/Button';
 import Text from '../../design-system/atoms/Text';
 import theme from '../../design-system/theme';
-import {Screens} from '../../navigation/types';
-import {navigateToScreen} from '../../navigation/utils';
-import {useAppSelector} from '../../store/hooks';
+import { Screens } from '../../navigation/types';
+import { navigateToScreen } from '../../navigation/utils';
+import { useAppSelector } from '../../store/hooks';
 
 const CartReview = () => {
-  const {items} = useAppSelector(state => state.cart);
+  const { items } = useAppSelector(state => state.cart);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
   const calculateTotals = () => {
@@ -48,7 +48,7 @@ const CartReview = () => {
           <Text style={styles.sectionTitle}>Order Summary</Text>
           {items.map(item => (
             <View key={item.productId} style={styles.itemContainer}>
-              <Image source={{uri: item.image}} style={styles.itemImage} />
+              <Image source={{ uri: item.image }} style={styles.itemImage} />
               <View style={styles.itemDetails}>
                 <Text numberOfLines={2} style={styles.itemTitle}>
                   {item.title}

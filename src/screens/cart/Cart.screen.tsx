@@ -7,21 +7,21 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {useAppSelector, useAppDispatch} from '../../store/hooks';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import {
   removeFromCart,
   updateQuantity,
 } from '../../store/slices/cart/cartSlice';
 import Text from '../../design-system/atoms/Text';
 import Button from '../../design-system/atoms/Button';
-import {AppIcon} from '../../design-system/atoms/AppIcon';
+import { AppIcon } from '../../design-system/atoms/AppIcon';
 import theme from '../../design-system/theme';
-import {navigateToScreen} from '../../navigation/utils';
-import {Screens} from '../../navigation/types';
+import { navigateToScreen } from '../../navigation/utils';
+import { Screens } from '../../navigation/types';
 
 const Cart = () => {
-  const {items} = useAppSelector(state => state.cart);
+  const { items } = useAppSelector(state => state.cart);
   const dispatch = useAppDispatch();
 
   const calculateTotal = () => {
@@ -32,7 +32,7 @@ const Cart = () => {
     if (newQuantity === 0) {
       dispatch(removeFromCart(productId));
     } else {
-      dispatch(updateQuantity({productId, quantity: newQuantity}));
+      dispatch(updateQuantity({ productId, quantity: newQuantity }));
     }
   };
 
@@ -61,7 +61,7 @@ const Cart = () => {
         {/* Cart Items */}
         {items.map(item => (
           <View key={item.productId} style={styles.cartItem}>
-            <Image source={{uri: item.image}} style={styles.productImage} />
+            <Image source={{ uri: item.image }} style={styles.productImage} />
             <View style={styles.productInfo}>
               <Text numberOfLines={2} style={styles.productTitle}>
                 {item.title}
@@ -74,7 +74,8 @@ const Cart = () => {
                   onPress={() =>
                     handleUpdateQuantity(item.productId, item.quantity - 1)
                   }
-                  style={styles.quantityButton}>
+                  style={styles.quantityButton}
+                >
                   <AppIcon name="minus" size={24} />
                 </TouchableOpacity>
                 <Text style={styles.quantity}>{item.quantity}</Text>
@@ -82,14 +83,16 @@ const Cart = () => {
                   onPress={() =>
                     handleUpdateQuantity(item.productId, item.quantity + 1)
                   }
-                  style={styles.quantityButton}>
+                  style={styles.quantityButton}
+                >
                   <AppIcon name="plus" size={24} />
                 </TouchableOpacity>
               </View>
             </View>
             <TouchableOpacity
               onPress={() => dispatch(removeFromCart(item.productId))}
-              style={styles.removeButton}>
+              style={styles.removeButton}
+            >
               <AppIcon
                 name="delete"
                 size={24}

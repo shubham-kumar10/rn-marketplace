@@ -1,16 +1,16 @@
 // src/screens/confirmation/Confirmation.screen.tsx
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import LottieView from 'lottie-react-native';
 import Text from '../../design-system/atoms/Text';
 import Button from '../../design-system/atoms/Button';
-import {Screens} from '../../navigation/types';
-import {navigateToScreen} from '../../navigation/utils';
+import { Screens } from '../../navigation/types';
+import { navigateToScreen } from '../../navigation/utils';
 import theme from '../../design-system/theme';
-import {useAppDispatch} from '../../store/hooks';
-import {clearCart} from '../../store/slices/cart/cartSlice';
-import {AppIcon} from '../../design-system/atoms/AppIcon';
+import { useAppDispatch } from '../../store/hooks';
+import { clearCart } from '../../store/slices/cart/cartSlice';
+import { AppIcon } from '../../design-system/atoms/AppIcon';
 
 const CHECKOUT_LOTTIE_URL =
   'https://lottie.host/1026a06d-bc88-4a35-9be5-7d39d8941c03/xo8Vu1CdQ0.lottie';
@@ -24,7 +24,7 @@ const ConfirmationScreen = () => {
   }, [dispatch]);
 
   const handleReturnHome = () => {
-    navigateToScreen(Screens.ROOT, {screen: Screens.HOME});
+    navigateToScreen(Screens.ROOT, { screen: Screens.HOME });
   };
 
   return (
