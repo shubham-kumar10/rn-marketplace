@@ -1,24 +1,19 @@
 // src/screens/cart/Cart.screen.tsx
 import React from 'react';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import Button from '../../design-system/atoms/Button';
+import Text from '../../design-system/atoms/Text';
+import theme from '../../design-system/theme';
+import { Screens } from '../../navigation/types';
+import { navigateToScreen } from '../../navigation/utils';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   removeFromCart,
   updateQuantity,
 } from '../../store/slices/cart/cartSlice';
-import Text from '../../design-system/atoms/Text';
-import Button from '../../design-system/atoms/Button';
-import { AppIcon } from '../../design-system/atoms/AppIcon';
-import theme from '../../design-system/theme';
-import { navigateToScreen } from '../../navigation/utils';
-import { Screens } from '../../navigation/types';
+import CartItem from './components/CartItem';
+import EmptyCart from './components/EmptyCart';
 
 const Cart = () => {
   const { items } = useAppSelector(state => state.cart);
@@ -37,79 +32,33 @@ const Cart = () => {
   };
 
   if (items.length === 0) {
-    return (
-      <SafeAreaView style={styles.emptyContainer}>
-        <AppIcon
-          name="cart-outline"
-          size={64}
-          color={theme.colors.neutral.neutral400}
-        />
-        <Text variant="heading" style={styles.emptyText}>
-          Your cart is empty
-        </Text>
-        <Button
-          title="Continue Shopping"
-          onPress={() => navigateToScreen(Screens.HOME)}
-        />
-      </SafeAreaView>
-    );
+    return <EmptyCart />;
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView style={styles.scrollView}>
-        {/* Cart Items */}
         {items.map(item => (
-          <View key={item.productId} style={styles.cartItem}>
-            <Image source={{ uri: item.image }} style={styles.productImage} />
-            <View style={styles.productInfo}>
-              <Text numberOfLines={2} style={styles.productTitle}>
-                {item.title}
-              </Text>
-              <Text style={styles.productPrice}>AED {item.price}</Text>
-
-              {/* Quantity Selector */}
-              <View style={styles.quantityContainer}>
-                <TouchableOpacity
-                  onPress={() =>
-                    handleUpdateQuantity(item.productId, item.quantity - 1)
-                  }
-                  style={styles.quantityButton}
-                >
-                  <AppIcon name="minus" size={24} />
-                </TouchableOpacity>
-                <Text style={styles.quantity}>{item.quantity}</Text>
-                <TouchableOpacity
-                  onPress={() =>
-                    handleUpdateQuantity(item.productId, item.quantity + 1)
-                  }
-                  style={styles.quantityButton}
-                >
-                  <AppIcon name="plus" size={24} />
-                </TouchableOpacity>
-              </View>
-            </View>
-            <TouchableOpacity
-              onPress={() => dispatch(removeFromCart(item.productId))}
-              style={styles.removeButton}
-            >
-              <AppIcon
-                name="delete"
-                size={24}
-                color={theme.colors.error.error500}
-              />
-            </TouchableOpacity>
-          </View>
+          <CartItem
+            item={item}
+            key={item.productId}
+            decrement={() =>
+              handleUpdateQuantity(item.productId, item.quantity - 1)
+            }
+            increment={() =>
+              handleUpdateQuantity(item.productId, item.quantity + 1)
+            }
+            removeFromCart={() => dispatch(removeFromCart(item.productId))}
+          />
         ))}
 
-        {/* Order Summary */}
         <View style={styles.summary}>
           <Text variant="heading" style={styles.summaryTitle}>
             Order Summary
           </Text>
           <View style={styles.summaryRow}>
             <Text>Subtotal</Text>
-            <Text>AED {calculateTotal()}</Text>
+            <Text>$ {calculateTotal()}</Text>
           </View>
           <View style={styles.summaryRow}>
             <Text>Shipping</Text>
@@ -117,12 +66,11 @@ const Cart = () => {
           </View>
           <View style={[styles.summaryRow, styles.totalRow]}>
             <Text variant="subheading">Total</Text>
-            <Text variant="subheading">AED {calculateTotal()}</Text>
+            <Text variant="subheading">$ {calculateTotal()}</Text>
           </View>
         </View>
       </ScrollView>
 
-      {/* Checkout Button */}
       <View style={styles.checkoutContainer}>
         <Button
           title="Proceed to Checkout"
@@ -141,54 +89,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-  },
-  emptyContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: theme.spacing.xl,
-  },
-  emptyText: {
-    marginVertical: theme.spacing.lg,
-  },
-  cartItem: {
-    flexDirection: 'row',
-    padding: theme.spacing.md,
-    backgroundColor: 'white',
-    marginBottom: theme.spacing.sm,
-    borderRadius: 8,
-  },
-  productImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 8,
-  },
-  productInfo: {
-    flex: 1,
-    marginLeft: theme.spacing.md,
-  },
-  productTitle: {
-    fontSize: 16,
-    marginBottom: theme.spacing.xs,
-  },
-  productPrice: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: theme.spacing.sm,
-  },
-  quantityContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  quantityButton: {
-    padding: theme.spacing.xs,
-  },
-  quantity: {
-    marginHorizontal: theme.spacing.md,
-    fontSize: 16,
-  },
-  removeButton: {
-    padding: theme.spacing.sm,
   },
   summary: {
     backgroundColor: 'white',

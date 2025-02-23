@@ -14,7 +14,13 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   title,
 }) => {
   return (
-    <View style={[GlobalStyles.row, GlobalStyles.marginHorizontalSm]}>
+    <View
+      style={[
+        GlobalStyles.row,
+        GlobalStyles.marginHorizontalSm,
+        GlobalStyles.marginBottomSm,
+      ]}
+    >
       <IconButton name="arrow-left" size={24} onPress={onBackPress} />
       <Text variant="subheading" style={[GlobalStyles.marginLeftSm]}>
         {title}

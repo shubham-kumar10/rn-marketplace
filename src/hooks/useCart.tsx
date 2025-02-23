@@ -11,11 +11,14 @@ const useCart = (product: Product) => {
 
   const handleAddToCart = () => {
     setIsAddingToCart(true);
+    const price = Number(
+      (product.price * (1 - product.discountPercentage / 100)).toFixed(2),
+    );
     dispatch(
       addToCart({
+        price,
         productId: product.id,
         title: product.title,
-        price: product.price * (1 - product.discountPercentage / 100),
         quantity,
         image: product.thumbnail,
       }),

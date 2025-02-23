@@ -90,7 +90,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         <View style={[GlobalStyles.flexRow, GlobalStyles.alignCenter]}>
           <Text style={styles.price}>${discountedPrice.toFixed(2)}</Text>
-          {product.price && product.price > 0 && (
+          {!!product.price && product.price > 0 && (
             <Text style={[GlobalStyles.marginLeftXs, styles.originalPrice]}>
               ${product.price}
             </Text>

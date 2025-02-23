@@ -1,14 +1,25 @@
 // src/screens/cart/CartReview.screen.tsx
 import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, View } from 'react-native';
+import {
+  Alert,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppIcon } from '../../design-system/atoms/AppIcon';
 import Button from '../../design-system/atoms/Button';
 import Text from '../../design-system/atoms/Text';
 import theme from '../../design-system/theme';
 import { Screens } from '../../navigation/types';
-import { navigateToScreen } from '../../navigation/utils';
+import { goBack, navigateToScreen } from '../../navigation/utils';
 import { useAppSelector } from '../../store/hooks';
+import NavigationHeader from '../../design-system/molecules/NavigationHeader';
+import ReviewItem from './components/ReviewItem';
+import GlobalStyles from '../../styles/global';
+import PaymentOptions from './components/PaymentOptions';
 
 const CartReview = () => {
   const { items } = useAppSelector(state => state.cart);
@@ -43,49 +54,33 @@ const CartReview = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+        <NavigationHeader onBackPress={goBack} title="Review Your Order" />
         {/* Order Items Summary */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Order Summary</Text>
           {items.map(item => (
-            <View key={item.productId} style={styles.itemContainer}>
-              <Image source={{ uri: item.image }} style={styles.itemImage} />
-              <View style={styles.itemDetails}>
-                <Text numberOfLines={2} style={styles.itemTitle}>
-                  {item.title}
-                </Text>
-                <Text style={styles.itemQuantity}>Qty: {item.quantity}</Text>
-                <Text style={styles.itemPrice}>
-                  AED {(item.price * item.quantity).toFixed(2)}
-                </Text>
-              </View>
-            </View>
+            <ReviewItem key={item.productId} item={item} />
           ))}
         </View>
 
         {/* Payment Method */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Payment Method</Text>
-          <View style={styles.paymentMethod}>
-            <AppIcon name="card-outline" size={24} />
-            <Text style={styles.paymentText}>Credit/Debit Card</Text>
-          </View>
-        </View>
+        <PaymentOptions />
 
         {/* Cost Breakdown */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Cost Breakdown</Text>
           <View style={styles.costRow}>
             <Text>Subtotal</Text>
-            <Text>AED {calculateTotals().subtotal.toFixed(2)}</Text>
+            <Text>$ {calculateTotals().subtotal.toFixed(2)}</Text>
           </View>
           <View style={styles.costRow}>
             <Text>VAT (5%)</Text>
-            <Text>AED {calculateTotals().tax.toFixed(2)}</Text>
+            <Text>$ {calculateTotals().tax.toFixed(2)}</Text>
           </View>
           <View style={[styles.costRow, styles.totalRow]}>
             <Text style={styles.totalText}>Total</Text>
             <Text style={styles.totalAmount}>
-              AED {calculateTotals().total.toFixed(2)}
+              $ {calculateTotals().total.toFixed(2)}
             </Text>
           </View>
         </View>
@@ -112,49 +107,12 @@ const styles = StyleSheet.create({
   section: {
     backgroundColor: 'white',
     marginBottom: theme.spacing.md,
-    padding: theme.spacing.lg,
+    paddingHorizontal: theme.spacing.lg,
+    paddingTop: theme.spacing.lg,
   },
   sectionTitle: {
     fontSize: theme.typography.fontSize.lg,
     fontWeight: theme.typography.fontWeight.bold,
-    marginBottom: theme.spacing.md,
-  },
-  itemContainer: {
-    flexDirection: 'row',
-    marginBottom: theme.spacing.md,
-    paddingBottom: theme.spacing.md,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.neutral.neutral200,
-  },
-  itemImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 8,
-  },
-  itemDetails: {
-    flex: 1,
-    marginLeft: theme.spacing.md,
-  },
-  itemTitle: {
-    fontSize: theme.typography.fontSize.md,
-    marginBottom: theme.spacing.xs,
-  },
-  itemQuantity: {
-    color: theme.colors.neutral.neutral600,
-    marginBottom: theme.spacing.xs,
-  },
-  itemPrice: {
-    fontWeight: theme.typography.fontWeight.bold,
-  },
-  paymentMethod: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: theme.spacing.md,
-    backgroundColor: theme.colors.neutral.neutral100,
-    borderRadius: 8,
-  },
-  paymentText: {
-    marginLeft: theme.spacing.md,
   },
   costRow: {
     flexDirection: 'row',
