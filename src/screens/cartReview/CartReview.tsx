@@ -1,25 +1,16 @@
 // src/screens/cart/CartReview.screen.tsx
 import React, { useState } from 'react';
-import {
-  Alert,
-  Image,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AppIcon } from '../../design-system/atoms/AppIcon';
 import Button from '../../design-system/atoms/Button';
 import Text from '../../design-system/atoms/Text';
+import NavigationHeader from '../../design-system/molecules/NavigationHeader';
 import theme from '../../design-system/theme';
 import { Screens } from '../../navigation/types';
 import { goBack, navigateToScreen } from '../../navigation/utils';
 import { useAppSelector } from '../../store/hooks';
-import NavigationHeader from '../../design-system/molecules/NavigationHeader';
-import ReviewItem from './components/ReviewItem';
-import GlobalStyles from '../../styles/global';
 import PaymentOptions from './components/PaymentOptions';
+import ReviewItem from './components/ReviewItem';
 
 const CartReview = () => {
   const { items } = useAppSelector(state => state.cart);

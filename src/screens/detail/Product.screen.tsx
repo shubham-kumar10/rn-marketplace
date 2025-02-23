@@ -1,23 +1,21 @@
 // src/screens/detail/Product.screen.tsx
-import React, { useState } from 'react';
-import { ScrollView, View, StyleSheet, ActivityIndicator } from 'react-native';
+import React from 'react';
+import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { productService } from '../../api/services/product.service';
+import { useFetch } from '../../api/usefetch';
 import { AppIcon } from '../../design-system/atoms/AppIcon';
 import Button from '../../design-system/atoms/Button';
 import Text from '../../design-system/atoms/Text';
-import ImageGallery from '../../design-system/organisms/ImageGallery';
-import { useAppDispatch } from '../../store/hooks';
-import { addToCart } from '../../store/slices/cart/cartSlice';
-import GlobalStyles from '../../styles/global';
-import theme from '../../design-system/theme';
 import { IconButton } from '../../design-system/molecules/IconButton';
-import { useFetch } from '../../api/usefetch';
-import { productService } from '../../api/services/product.service';
-import { ProductHeader } from './components/ProductHeader';
-import { ProductDetailProps } from '../../navigation/types';
-import { InfoRow } from './components/Infoitem';
-import { DetailItem } from './components/DetailItem';
+import ImageGallery from '../../design-system/organisms/ImageGallery';
+import theme from '../../design-system/theme';
 import useCart from '../../hooks/useCart';
+import { ProductDetailProps } from '../../navigation/types';
+import GlobalStyles from '../../styles/global';
+import { DetailItem } from './components/DetailItem';
+import { InfoRow } from './components/Infoitem';
+import { ProductHeader } from './components/ProductHeader';
 
 const ProductDetailScreen: React.FC<ProductDetailProps> = ({ route }) => {
   const { productId } = route.params;

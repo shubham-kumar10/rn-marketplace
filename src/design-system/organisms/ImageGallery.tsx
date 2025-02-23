@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FlatList, Image, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { SCREEN_WIDTH } from '../../constants/index.ts';
+import Image from '../atoms/Image.tsx';
 
 interface ImageGalleryProps {
   images: string[];
