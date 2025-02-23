@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import React from 'react';
 import theme from '../../../design-system/theme';
 import GlobalStyles from '../../../styles/global';
+import Text from '../../../design-system/atoms/Text';
+import Image from '../../../design-system/atoms/Image';
 
 const ReviewItem = ({ item }) => {
   return (

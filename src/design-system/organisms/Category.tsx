@@ -1,9 +1,10 @@
 // src/components/molecules/CategoryCircle.tsx
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '../atoms/Text';
 import theme from '../theme';
 import { Category } from '../../data/type';
+import Image from '../atoms/Image';
 
 interface CategoryCircleProps {
   category: Category;

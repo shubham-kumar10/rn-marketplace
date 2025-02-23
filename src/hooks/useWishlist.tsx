@@ -1,3 +1,5 @@
+import MockAnalytics from '../packages/analytics/analytics';
+import { EVENTS_ACTIONS } from '../packages/analytics/events';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import {
   addToWishlist,
@@ -14,6 +16,7 @@ const useWishlist = (productId: number) => {
   console.log(items);
   const handleWishlistPress = () => {
     if (isInWishlist) {
+      MockAnalytics.trackClick(EVENTS_ACTIONS.WISHLISTED);
       dispatch(removeFromWishlist(productId));
     } else {
       dispatch(addToWishlist(productId));

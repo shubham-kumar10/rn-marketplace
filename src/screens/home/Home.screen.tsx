@@ -12,6 +12,7 @@ import {
   productService,
   ProductService,
 } from '../../api/services/product.service';
+import ErrorBoundary from '../../utils/ErrorBoundary';
 
 const Home: React.FC<HomeScreenProps> = () => {
   const renderBanner = useCallback(
@@ -40,17 +41,19 @@ const Home: React.FC<HomeScreenProps> = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'right', 'left']}>
-      <Header />
-      <FlatList
-        data={HOME_SCREEN_UI}
-        renderItem={renderItem}
-        maxToRenderPerBatch={10}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={item => item.id.toString()}
-        contentContainerStyle={styles.listContent}
-      />
-    </SafeAreaView>
+    <ErrorBoundary>
+      <SafeAreaView style={styles.container} edges={['top', 'right', 'left']}>
+        <Header />
+        <FlatList
+          data={HOME_SCREEN_UI}
+          renderItem={renderItem}
+          maxToRenderPerBatch={10}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item.id.toString()}
+          contentContainerStyle={styles.listContent}
+        />
+      </SafeAreaView>
+    </ErrorBoundary>
   );
 };
 
