@@ -1,5 +1,5 @@
 // src/screens/cart/Cart.screen.tsx
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../../design-system/atoms/Button';
@@ -19,9 +19,11 @@ const Cart = () => {
   const { items } = useAppSelector(state => state.cart);
   const dispatch = useAppDispatch();
 
-  const calculateTotal = () => {
-    return items.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
+  const calculateTotal = useMemo(() => {
+    return items
+      .reduce((total, item) => total + item.price * item.quantity, 0)
+      .toFixed(2);
+  }, [items]);
 
   const handleUpdateQuantity = (productId: number, newQuantity: number) => {
     if (newQuantity === 0) {
@@ -58,7 +60,7 @@ const Cart = () => {
           </Text>
           <View style={styles.summaryRow}>
             <Text>Subtotal</Text>
-            <Text>$ {calculateTotal()}</Text>
+            <Text>$ {calculateTotal}</Text>
           </View>
           <View style={styles.summaryRow}>
             <Text>Shipping</Text>
@@ -66,7 +68,7 @@ const Cart = () => {
           </View>
           <View style={[styles.summaryRow, styles.totalRow]}>
             <Text variant="subheading">Total</Text>
-            <Text variant="subheading">$ {calculateTotal()}</Text>
+            <Text variant="subheading">$ {calculateTotal}</Text>
           </View>
         </View>
       </ScrollView>

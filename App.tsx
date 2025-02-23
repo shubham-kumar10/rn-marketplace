@@ -14,12 +14,13 @@ import { navigationRef } from './src/navigation/utils';
 import { store } from './src/store/store';
 import ErrorBoundary from './src/utils/ErrorBoundary';
 import * as Sentry from '@sentry/react-native';
+import { linking } from './src/navigation/linking';
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
       <Provider store={store}>
-        <NavigationContainer ref={navigationRef}>
+        <NavigationContainer ref={navigationRef} linking={linking}>
           <ErrorBoundary>
             <MainStack />
           </ErrorBoundary>

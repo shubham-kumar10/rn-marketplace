@@ -4,6 +4,7 @@ type LogLevel = 'error' | 'warning' | 'info' | 'debug';
 
 const DSN =
   'https://15b858fc06b59dd82db72723261fe273@o4508870600884224.ingest.us.sentry.io/4508870603636736';
+
 class ErrorTracker {
   static init() {
     Sentry.init({
