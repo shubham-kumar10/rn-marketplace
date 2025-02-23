@@ -12,13 +12,16 @@ import { Provider } from 'react-redux';
 import { MainStack } from './src/navigation/RootStack';
 import { navigationRef } from './src/navigation/utils';
 import { store } from './src/store/store';
+import ErrorBoundary from './src/utils/ErrorBoundary';
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
       <Provider store={store}>
         <NavigationContainer ref={navigationRef}>
-          <MainStack />
+          <ErrorBoundary>
+            <MainStack />
+          </ErrorBoundary>
         </NavigationContainer>
       </Provider>
     </SafeAreaProvider>

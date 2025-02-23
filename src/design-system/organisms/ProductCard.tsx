@@ -1,6 +1,6 @@
 // src/design-system/molecules/ProductCard.tsx
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { navigateToScreen } from '../../navigation/utils';
 import { Screens } from '../../navigation/types';
 import { AppIcon } from '../atoms/AppIcon';
@@ -8,8 +8,8 @@ import Text from '../atoms/Text';
 import theme from '../theme';
 import GlobalStyles from '../../styles/global';
 import WishlistButton from '../../screens/wishlist/components/WishlistIcon';
-import Tag from '../molecules/Tag';
 import FeatureTag from './FeatureTag';
+import Image from '../atoms/Image';
 
 interface ProductCardProps {
   product: {

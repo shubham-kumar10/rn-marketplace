@@ -1,9 +1,11 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import { CartItem as CartItemInterface } from '../../../store/slices/cart/types';
 import { AppIcon } from '../../../design-system/atoms/AppIcon';
 import theme from '../../../design-system/theme';
 import GlobalStyles from '../../../styles/global';
+import Text from '../../../design-system/atoms/Text';
+import Image from '../../../design-system/atoms/Image';
 
 interface CartItemProps {
   item: CartItemInterface;
