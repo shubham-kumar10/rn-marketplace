@@ -4,6 +4,7 @@ import BottomTabs from './BottomTabs';
 import { RootStackParamList, Screens } from './types'; // Import Enum & Types
 import CartReview from '../screens/cartReview/CartReview';
 import ConfirmationScreen from '../screens/confirmation/Confirmation.screen';
+import Wishlist from '../screens/wishlist/Wishlist.screen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -26,6 +27,7 @@ export const MainStack = () => {
         name={Screens.CONFIRMATION}
         component={ConfirmationScreen}
       />
+      <Stack.Screen name={Screens.WISHLIST} component={Wishlist} />
     </Stack.Navigator>
   );
 };

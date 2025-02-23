@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 import {
   addToWishlist,
   removeFromWishlist,
-} from '../../store/slices/wishlist/wishlistSlice';
+} from '../store/slices/wishlist/wishlistSlice';
 
 const useWishlist = (productId: number) => {
   const dispatch = useAppDispatch();
@@ -10,6 +10,8 @@ const useWishlist = (productId: number) => {
     state.wishlist.items.some(item => item.productId === productId),
   );
 
+  const items = useAppSelector(state => state.wishlist.items);
+  console.log(items);
   const handleWishlistPress = () => {
     if (isInWishlist) {
       dispatch(removeFromWishlist(productId));
@@ -19,6 +21,7 @@ const useWishlist = (productId: number) => {
   };
 
   return {
+    isInWishlist,
     handleWishlistPress,
   };
 };

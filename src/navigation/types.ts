@@ -4,7 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 // types.ts
 export type RootStackParamList = {
   Root: { screen: keyof MainTabParamList };
-  ProductDetails: { productId: string };
+  ProductDetails: { productId: number };
   CartReview: undefined;
   Confirmation: undefined;
 };
@@ -23,6 +23,7 @@ export enum Screens {
   HOME = 'Home',
   SEARCH = 'Search',
   CART = 'Cart',
+  WISHLIST = 'Wishlist',
 }
 
 export type StackScreenProps<T extends keyof RootStackParamList> =

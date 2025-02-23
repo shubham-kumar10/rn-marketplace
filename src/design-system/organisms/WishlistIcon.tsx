@@ -4,23 +4,26 @@ import GlobalStyles from '../../styles/global';
 import theme from '../theme';
 import { AppIcon } from '../atoms/AppIcon';
 
-const WishlistIcon = ({ onPress }) => {
+const WishlistIcon = ({
+  onPress,
+  iconName = 'heart-outline',
+  styles,
+  color = theme.colors.neutral.neutral600,
+}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[
-        style.container,
-        GlobalStyles.paddingSm,
-        GlobalStyles.radiusRound,
-        GlobalStyles.alignCenter,
-        GlobalStyles.marginLeftSm,
-      ]}
+      style={
+        styles ?? [
+          style.container,
+          GlobalStyles.paddingSm,
+          GlobalStyles.radiusRound,
+          GlobalStyles.alignCenter,
+          GlobalStyles.marginLeftSm,
+        ]
+      }
     >
-      <AppIcon
-        name="heart-outline"
-        size={20}
-        color={theme.colors.neutral.neutral600}
-      />
+      <AppIcon name={iconName} size={20} color={color} />
     </TouchableOpacity>
   );
 };
