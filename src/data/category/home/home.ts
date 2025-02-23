@@ -1,6 +1,6 @@
-import { fashion } from '../products/fashion';
+import { FASHION } from '../products/fashion';
+import { MISC } from '../products/misc';
 import { RECOMMENDATIONS } from '../products/recommended';
-import { TRENDING } from '../products/trending';
 
 export const HOME_SCREEN_UI = [
   {
@@ -19,7 +19,17 @@ export const HOME_SCREEN_UI = [
       title: {
         text: 'Recommended For You',
       },
-      list: RECOMMENDATIONS.slice(20, 25),
+      list: RECOMMENDATIONS,
+    },
+  },
+  {
+    id: 7,
+    type: 'RAIL',
+    data: {
+      title: {
+        text: 'Fashion Hot Deals',
+      },
+      list: FASHION.slice(6),
     },
   },
   {
@@ -29,7 +39,7 @@ export const HOME_SCREEN_UI = [
       title: {
         text: '60% OFF on Top Picks',
       },
-      list: RECOMMENDATIONS.slice(4, 10),
+      list: [...FASHION.slice(3, 8), ...MISC.slice(3, 8)],
     },
   },
   {
@@ -49,7 +59,7 @@ export const HOME_SCREEN_UI = [
       title: {
         text: 'Exclusive Deals – Limited Time!',
       },
-      list: RECOMMENDATIONS.slice(1, 6),
+      list: MISC.slice(0, 6),
     },
   },
 
@@ -60,7 +70,7 @@ export const HOME_SCREEN_UI = [
       title: {
         text: 'Hot Fashion Picks – 50% OFF',
       },
-      list: RECOMMENDATIONS.slice(10, 16),
+      list: [...MISC.slice(5), ...RECOMMENDATIONS],
     },
   },
 
@@ -71,17 +81,7 @@ export const HOME_SCREEN_UI = [
       title: {
         text: 'Trending Deals',
       },
-      list: TRENDING,
-    },
-  },
-  {
-    id: 7,
-    type: 'RAIL',
-    data: {
-      title: {
-        text: 'Hot Deals on Fashion',
-      },
-      list: fashion.slice(3),
+      list: FASHION,
     },
   },
 ];
