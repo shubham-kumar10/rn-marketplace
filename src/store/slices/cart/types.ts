@@ -1,5 +1,3 @@
-import { Product } from '../../../data/type';
-
 export interface CartItem {
   productId: number;
   title: string;

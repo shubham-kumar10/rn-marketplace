@@ -8,6 +8,8 @@ import Text from '../atoms/Text';
 import theme from '../theme';
 import GlobalStyles from '../../styles/global';
 import WishlistButton from '../../screens/wishlist/components/WishlistIcon';
+import Tag from '../molecules/Tag';
+import FeatureTag from './FeatureTag';
 
 interface ProductCardProps {
   product: {
@@ -27,14 +29,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const discountedPrice =
     product.price * (1 - (product.discountPercentage || 0) / 100);
 
+  const navigateToDetails = () =>
+    navigateToScreen(Screens.PRODUCT_DETAILS, { productId: product.id });
+
   return (
     <TouchableOpacity
-      onPress={() =>
-        navigateToScreen(Screens.PRODUCT_DETAILS, { productId: product.id })
-      }
+      onPress={navigateToDetails}
       style={[GlobalStyles.marginSm, styles.container]}
     >
-      {/* Image Section */}
       <View style={styles.imageContainer}>
         <Image
           source={{ uri: product.thumbnail }}
@@ -42,28 +44,30 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           resizeMode="contain"
         />
 
-        {/* Discount Badge */}
-        {product.discountPercentage > 0 && (
+        {product.discountPercentage && product.discountPercentage > 1 && (
           <View style={[GlobalStyles.paddingXs, styles.discountBadge]}>
             <Text style={styles.discountText}>
               {Math.round(product.discountPercentage)}% OFF
             </Text>
           </View>
         )}
+
+        <FeatureTag
+          rating={product.rating}
+          stock={product.stock}
+          discountPercentage={product.discountPercentage}
+        />
       </View>
 
       <View style={{ position: 'absolute', right: 5, bottom: 5 }}>
         <WishlistButton productId={product.id} styles={{}} />
       </View>
 
-      {/* Content Section */}
       <View style={[GlobalStyles.paddingSm]}>
-        {/* Brand */}
         <Text style={[GlobalStyles.marginBottomXs, styles.brand]}>
           {product.brand}
         </Text>
 
-        {/* Title */}
         <Text
           numberOfLines={2}
           style={[GlobalStyles.marginBottomXs, styles.title]}
@@ -71,7 +75,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {product.title}
         </Text>
 
-        {/* Rating */}
         <View
           style={[
             GlobalStyles.flexRow,
@@ -85,17 +88,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </Text>
         </View>
 
-        {/* Price Section */}
         <View style={[GlobalStyles.flexRow, GlobalStyles.alignCenter]}>
           <Text style={styles.price}>${discountedPrice.toFixed(2)}</Text>
-          {product.discountPercentage > 0 && (
+          {!!product.price && product.price > 0 && (
             <Text style={[GlobalStyles.marginLeftXs, styles.originalPrice]}>
               ${product.price}
             </Text>
           )}
         </View>
 
-        {/* Stock Status */}
         <View
           style={[
             GlobalStyles.flexRow,

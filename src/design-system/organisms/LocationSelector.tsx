@@ -10,7 +10,7 @@ const LocationSelector = () => {
   return (
     <TouchableOpacity
       onPress={() => {
-        Alert.alert('Maps Not Implemented');
+        Alert.alert('Currently we are only serving in some locations');
       }}
       style={[
         GlobalStyles.flexRow,
