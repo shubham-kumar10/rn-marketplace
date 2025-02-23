@@ -45,7 +45,6 @@ const ProductDetailScreen: React.FC<ProductDetailProps> = ({ route }) => {
 
         <ScrollView>
           <ImageGallery images={[product.thumbnail, ...product.images]} />
-          {h.w}
           {/* Product Info Section */}
           <View style={[GlobalStyles.paddingMd]}>
             {/* Brand & Stock Status */}

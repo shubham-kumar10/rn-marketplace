@@ -13,6 +13,7 @@ import { MainStack } from './src/navigation/RootStack';
 import { navigationRef } from './src/navigation/utils';
 import { store } from './src/store/store';
 import ErrorBoundary from './src/utils/ErrorBoundary';
+import * as Sentry from '@sentry/react-native';
 
 function App(): React.JSX.Element {
   return (
@@ -28,4 +29,4 @@ function App(): React.JSX.Element {
   );
 }
 
-export default App;
+export default Sentry.wrap(App);
