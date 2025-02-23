@@ -8,15 +8,25 @@ import GlobalStyles from '../../styles/global';
 import NoResultsFound from './components/NoResultsFound';
 import SearchBanner from './components/SearchBanner';
 import useSearch from './useSearch';
+import { useFocusEffect } from '@react-navigation/native';
 
 const keyExtractor = (item: Product) => item.id.toString();
 
 const Search: React.FC<SearchScreenProps> = () => {
-  const { query, setQuery, isLoading, cachedResults } = useSearch();
+  const { query, setQuery, isLoading, cachedResults, clearSearch } =
+    useSearch();
 
   const renderProduct = useCallback(
     ({ item }: { item: Product }) => <ProductCard product={item} />,
     [],
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        clearSearch();
+      };
+    }, [clearSearch]),
   );
 
   return (
@@ -37,6 +47,7 @@ const Search: React.FC<SearchScreenProps> = () => {
             ListEmptyComponent={
               !isLoading && query.length > 3 ? <NoResultsFound /> : null
             }
+            showsVerticalScrollIndicator={false}
           />
         )}
       </View>
