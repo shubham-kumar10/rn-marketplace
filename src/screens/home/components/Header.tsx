@@ -4,6 +4,8 @@ import LocationSelector from '../../../design-system/organisms/LocationSelector'
 import SearchBox from '../../../design-system/organisms/SearchBox';
 import WishlistIcon from '../../../design-system/organisms/WishlistIcon';
 import GlobalStyles from '../../../styles/global';
+import { navigateToScreen } from '../../../navigation/utils';
+import { Screens } from '../../../navigation/types';
 
 const Header = () => {
   return (
@@ -19,7 +21,7 @@ const Header = () => {
         ]}
       >
         <SearchBox />
-        <WishlistIcon onPress={() => {}} />
+        <WishlistIcon onPress={() => navigateToScreen(Screens.WISHLIST)} />
       </View>
     </>
   );

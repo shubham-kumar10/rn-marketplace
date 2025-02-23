@@ -1,164 +1,131 @@
+// src/design-system/molecules/ProductCard.tsx
 import React from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
-import { Product } from '../../data/type';
-import { Screens } from '../../navigation/types';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { navigateToScreen } from '../../navigation/utils';
-
-interface ProductCardProps {
-  product: Product;
-  style: ViewStyle;
-}
-
-const CARD_WIDTH = 170; // Fixed card width
-const IMAGE_ASPECT_RATIO = 1; // 1:1 aspect ratio for image
-const IMAGE_HEIGHT = CARD_WIDTH * IMAGE_ASPECT_RATIO;
-
+import { Screens } from '../../navigation/types';
 import { AppIcon } from '../atoms/AppIcon';
+import Text from '../atoms/Text';
 import theme from '../theme';
+import GlobalStyles from '../../styles/global';
+import WishlistButton from '../../screens/wishlist/components/WishlistIcon';
 
 interface ProductCardProps {
-  product: Product;
-  style?: ViewStyle;
+  product: {
+    id: number;
+    title: string;
+    price: number;
+    discountPercentage?: number;
+    rating: number;
+    stock: number;
+    brand: string;
+    thumbnail: string;
+    availabilityStatus: string;
+  };
 }
 
-interface ProductCardProps {
-  product: Product;
-  style?: ViewStyle;
-  onWishlistPress?: (productId: number) => void;
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({
-  product,
-  style,
-  onWishlistPress,
-}) => {
-  const handleWishlistPress = () => {
-    onWishlistPress?.(product.id);
-  };
-
-  const renderBadges = () => {
-    if (!product.badges) return null;
-
-    return (
-      <View style={styles.topBadges}>
-        {product.badges.isNoonExclusive && (
-          <View style={styles.exclusiveBadge}>
-            <Text style={styles.exclusiveText}>noon exclusive</Text>
-          </View>
-        )}
-        {product.badges.isExpress && (
-          <View style={[styles.badge, styles.expressBadge]}>
-            <AppIcon
-              name="flash"
-              size={12}
-              color={theme.colors.amber.amber500}
-            />
-            <Text style={styles.expressText}>express</Text>
-          </View>
-        )}
-      </View>
-    );
-  };
-
-  const renderPriceSection = () => {
-    return (
-      <View style={styles.priceContainer}>
-        <Text style={styles.price}>
-          AED {product.price?.toLocaleString() ?? 'N/A'}
-        </Text>
-        {product.discount && (
-          <>
-            <Text style={styles.originalPrice}>
-              AED {product.discount.originalPrice?.toLocaleString()}
-            </Text>
-            {product.discount.percentage > 0 && (
-              <View style={styles.discountBadge}>
-                <Text style={styles.discountText}>
-                  {product.discount.percentage}% OFF
-                </Text>
-              </View>
-            )}
-          </>
-        )}
-      </View>
-    );
-  };
-
-  const renderRating = () => {
-    if (!product.rating?.average) return null;
-
-    return (
-      <View style={styles.ratingContainer}>
-        <AppIcon name="star" size={14} color={theme.colors.amber.amber500} />
-        <Text style={styles.rating}>
-          {product.rating.average.toFixed(1)}
-          {product.rating.count > 0 && ` (${product.rating.count})`}
-        </Text>
-      </View>
-    );
-  };
-
-  const renderDeliveryBadge = () => {
-    if (!product.badges?.isFreeDelivery) return null;
-
-    return (
-      <View style={styles.deliveryBadge}>
-        <AppIcon name="truck" size={14} color={theme.colors.blue.blue500} />
-        <Text style={styles.deliveryText}>Free Delivery</Text>
-      </View>
-    );
-  };
-
-  const renderStockStatus = () => {
-    if (!product.stock?.isLowStock || !product.stock?.available) return null;
-
-    return (
-      <Text style={styles.stockStatus}>
-        Only {product.stock.available} left
-      </Text>
-    );
-  };
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const discountedPrice =
+    product.price * (1 - (product.discountPercentage || 0) / 100);
 
   return (
     <TouchableOpacity
       onPress={() =>
         navigateToScreen(Screens.PRODUCT_DETAILS, { productId: product.id })
       }
-      style={[styles.container, style]}
+      style={[GlobalStyles.marginSm, styles.container]}
     >
-      <View style={styles.card}>
-        <View style={styles.imageContainer}>
-          <Image source={{ uri: product.images?.[0] }} style={styles.image} />
-          {renderBadges()}
-          <TouchableOpacity
-            style={styles.wishlistButton}
-            onPress={handleWishlistPress}
-          >
-            <AppIcon
-              name="heart-outline"
-              size={20}
-              color={theme.colors.neutral.neutral600}
-            />
-          </TouchableOpacity>
-        </View>
+      {/* Image Section */}
+      <View style={styles.imageContainer}>
+        <Image
+          source={{ uri: product.thumbnail }}
+          style={[GlobalStyles.flexGrow1, styles.image]}
+          resizeMode="contain"
+        />
 
-        <View style={styles.content}>
-          <View style={styles.titleContainer}>
-            <Text numberOfLines={2} style={styles.title}>
-              {product.title}
+        {/* Discount Badge */}
+        {product.discountPercentage > 0 && (
+          <View style={[GlobalStyles.paddingXs, styles.discountBadge]}>
+            <Text style={styles.discountText}>
+              {Math.round(product.discountPercentage)}% OFF
             </Text>
           </View>
-          {renderPriceSection()}
-          {renderRating()}
-          {renderDeliveryBadge()}
-          {renderStockStatus()}
+        )}
+      </View>
+
+      <View style={{ position: 'absolute', right: 5, bottom: 5 }}>
+        <WishlistButton productId={product.id} styles={{}} />
+      </View>
+
+      {/* Content Section */}
+      <View style={[GlobalStyles.paddingSm]}>
+        {/* Brand */}
+        <Text style={[GlobalStyles.marginBottomXs, styles.brand]}>
+          {product.brand}
+        </Text>
+
+        {/* Title */}
+        <Text
+          numberOfLines={2}
+          style={[GlobalStyles.marginBottomXs, styles.title]}
+        >
+          {product.title}
+        </Text>
+
+        {/* Rating */}
+        <View
+          style={[
+            GlobalStyles.flexRow,
+            GlobalStyles.alignCenter,
+            GlobalStyles.marginBottomXs,
+          ]}
+        >
+          <AppIcon name="star" size={12} color={theme.colors.amber.amber500} />
+          <Text style={[GlobalStyles.marginLeftXs, styles.rating]}>
+            {product.rating?.toFixed(1)}
+          </Text>
+        </View>
+
+        {/* Price Section */}
+        <View style={[GlobalStyles.flexRow, GlobalStyles.alignCenter]}>
+          <Text style={styles.price}>${discountedPrice.toFixed(2)}</Text>
+          {product.discountPercentage > 0 && (
+            <Text style={[GlobalStyles.marginLeftXs, styles.originalPrice]}>
+              ${product.price}
+            </Text>
+          )}
+        </View>
+
+        {/* Stock Status */}
+        <View
+          style={[
+            GlobalStyles.flexRow,
+            GlobalStyles.alignCenter,
+            GlobalStyles.marginTopXs,
+          ]}
+        >
+          <AppIcon
+            name={product.stock > 10 ? 'check-circle' : 'alert-circle'}
+            size={12}
+            color={
+              product.stock > 10
+                ? theme.colors.success.success500
+                : theme.colors.error.error500
+            }
+          />
+          <Text
+            style={[
+              GlobalStyles.marginLeftXs,
+              styles.stockText,
+              {
+                color:
+                  product.stock > 10
+                    ? theme.colors.success.success500
+                    : theme.colors.error.error500,
+              },
+            ]}
+          >
+            {product.availabilityStatus}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -167,152 +134,62 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    width: CARD_WIDTH,
-    margin: theme.spacing.xs,
-  },
-  card: {
-    width: CARD_WIDTH,
+    width: 170,
     backgroundColor: 'white',
     borderRadius: 8,
     borderWidth: 1,
     borderColor: theme.colors.neutral.neutral200,
   },
   imageContainer: {
-    width: CARD_WIDTH,
-    height: IMAGE_HEIGHT,
+    height: 170,
     position: 'relative',
-  },
-  titleContainer: {
-    minHeight: 36, // Minimum height for 2 lines
-    marginBottom: theme.spacing.xs,
+    backgroundColor: theme.colors.neutral.neutral100,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   },
   image: {
-    width: CARD_WIDTH,
-    height: IMAGE_HEIGHT,
+    width: '100%',
+    height: '100%',
     resizeMode: 'contain',
-    backgroundColor: theme.colors.neutral.neutral100,
   },
-  content: {
-    padding: theme.spacing.sm,
-    height: 120, // Fixed height for content
-  },
-  title: {
-    fontSize: 13,
-    lineHeight: 18,
-    height: 36, // Fixed height for 2 lines
-    marginBottom: theme.spacing.xs,
-    color: theme.colors.neutral.neutral800,
-  },
-  priceContainer: {
-    height: 24, // Fixed height for price section
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    marginBottom: theme.spacing.xs,
-  },
-  topBadges: {
+  discountBadge: {
     position: 'absolute',
     top: theme.spacing.xs,
     left: theme.spacing.xs,
-  },
-  badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: theme.spacing.xs,
-    paddingVertical: 2,
+    backgroundColor: theme.colors.error.error100,
     borderRadius: 4,
-    marginBottom: 4,
   },
-  exclusiveBadge: {
-    backgroundColor: theme.colors.blue.blue500,
-    paddingHorizontal: theme.spacing.xs,
-    paddingVertical: 2,
-    borderRadius: 4,
-    marginBottom: 4,
-  },
-  exclusiveText: {
-    color: 'white',
-    fontSize: 10,
-    fontWeight: '600',
-  },
-  expressBadge: {
-    backgroundColor: theme.colors.amber.amber100,
-  },
-  expressText: {
-    color: theme.colors.amber.amber700,
-    fontSize: 10,
-    fontWeight: '600',
-    marginLeft: 2,
-  },
-  wishlistButton: {
-    position: 'absolute',
-    top: theme.spacing.xs,
-    right: theme.spacing.xs,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: theme.spacing.xs,
-  },
-  content: {
-    padding: theme.spacing.sm,
+  brand: {
+    fontSize: 12,
+    color: theme.colors.neutral.neutral600,
+    textTransform: 'uppercase',
   },
   title: {
     fontSize: 13,
-    marginBottom: theme.spacing.xs,
     color: theme.colors.neutral.neutral800,
+    lineHeight: 18,
   },
-  priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    marginBottom: theme.spacing.xs,
+  rating: {
+    fontSize: 12,
+    color: theme.colors.neutral.neutral600,
   },
   price: {
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: '600',
     color: theme.colors.blue.blue500,
   },
   originalPrice: {
     fontSize: 12,
     textDecorationLine: 'line-through',
     color: theme.colors.neutral.neutral500,
-    marginLeft: theme.spacing.xs,
-  },
-  discountBadge: {
-    backgroundColor: theme.colors.error.error100,
-    paddingHorizontal: 4,
-    paddingVertical: 2,
-    borderRadius: 4,
-    marginLeft: theme.spacing.xs,
   },
   discountText: {
     fontSize: 10,
     color: theme.colors.error.error700,
     fontWeight: '600',
   },
-  ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: theme.spacing.xs,
-  },
-  rating: {
-    fontSize: 12,
-    color: theme.colors.neutral.neutral600,
-    marginLeft: 4,
-  },
-  deliveryBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: theme.spacing.xs,
-  },
-  deliveryText: {
-    fontSize: 12,
-    color: theme.colors.blue.blue500,
-    marginLeft: 4,
-  },
-  stockStatus: {
+  stockText: {
     fontSize: 11,
-    color: theme.colors.error.error700,
-    marginTop: theme.spacing.xs,
   },
 });
 

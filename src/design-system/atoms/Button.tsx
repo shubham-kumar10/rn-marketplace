@@ -7,6 +7,7 @@ interface Props {
   onPress: () => void;
   variant?: 'primary' | 'secondary';
   style?: ViewStyle;
+  disabled: boolean;
 }
 
 const Button: React.FC<Props> = ({
@@ -14,6 +15,7 @@ const Button: React.FC<Props> = ({
   onPress,
   variant = 'primary',
   style,
+  disabled,
 }) => {
   return (
     <TouchableOpacity
@@ -23,6 +25,7 @@ const Button: React.FC<Props> = ({
         variant === 'secondary' ? styles.secondary : styles.primary,
         style,
       ]}
+      disabled={disabled}
     >
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
