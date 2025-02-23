@@ -1,6 +1,6 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
 import React from 'react';
-import { IMAGE_HEIGHT_MEDIUM, WINDOW_WIDTH } from '../../constants.ts';
+import { Image, StyleSheet, View } from 'react-native';
+import { IMAGE_HEIGHT_MEDIUM, WINDOW_WIDTH } from '../../constants/index.ts';
 
 const Banner = ({ uri }) => {
   return (

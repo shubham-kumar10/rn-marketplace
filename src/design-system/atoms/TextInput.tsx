@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { styles } from './TextInput.styles';
 import { AppIcon } from './AppIcon';
+import colors, { neutral } from '../theme/colors';
 
 interface Props extends TextInputProps {
   label?: string;
@@ -41,7 +42,7 @@ const TextInput: React.FC<Props> = ({
             onPress={onLeftIconPress}
             style={styles.iconContainer}
           >
-            <AppIcon name={leftIcon} />
+            <AppIcon name={leftIcon} color={colors.blue.blue500} />
           </TouchableOpacity>
         )}
         <RNTextInput

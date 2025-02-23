@@ -9,13 +9,14 @@ import Home from '../screens/home/Home.screen';
 import Cart from '../screens/cart/Cart.screen';
 import Search from '../screens/search/Search.screen';
 import theme from '../design-system/theme';
+import GlobalStyles from '../styles/global';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 const TAB_ICON_MAP: Record<keyof MainTabParamList, string> = {
-  [Screens.HOME]: 'home-outline',
-  [Screens.SEARCH]: 'search-outline',
-  [Screens.CART]: 'cart-outline',
+  [Screens.HOME]: 'home',
+  [Screens.SEARCH]: 'search',
+  [Screens.CART]: 'cart',
 };
 
 const BADGE_THRESHOLD = 9;
@@ -43,7 +44,11 @@ function BottomTabs() {
         ),
         tabBarActiveTintColor: theme.colors.blue.blue500,
         tabBarInactiveTintColor: theme.colors.neutral.neutral700,
-        tabBarStyle: { backgroundColor: 'white', height: 60 },
+        tabBarStyle: {
+          backgroundColor: 'white',
+          height: 60,
+          ...GlobalStyles.shadow,
+        },
         ...getTabBarBadge(route.name),
       })}
     >

@@ -7,11 +7,10 @@
 
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
 import { MainStack } from './src/navigation/RootStack';
 import { navigationRef } from './src/navigation/utils';
-import { Provider } from 'react-redux';
 import { store } from './src/store/store';
 
 function App(): React.JSX.Element {
@@ -25,7 +24,5 @@ function App(): React.JSX.Element {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({});
 
 export default App;

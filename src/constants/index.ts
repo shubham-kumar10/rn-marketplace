@@ -15,3 +15,6 @@ export const WINDOW_ASPECT_RATIO = WINDOW_WIDTH / WINDOW_HEIGHT;
 export const IMAGE_HEIGHT_SMALL = 150;
 export const IMAGE_HEIGHT_MEDIUM = 200;
 export const IMAGE_HEIGHT_LARGE = 300;
+
+export const IS_IOS = Platform.OS === 'ios';
+export const IS_ANDROID = Platform.OS === 'android';

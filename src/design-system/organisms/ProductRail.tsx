@@ -2,15 +2,24 @@ import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import spacing from '../theme/spacing';
 import { textStyles } from '../theme/typography';
-import ProductCard from './ProductCard';
+import ProductCard from '../molecules/ProductCard';
+import GlobalStyles from '../../styles/global';
+import colors from '../theme/colors';
 
 const ProductRail = ({ collection }) => {
   const { title, list } = collection;
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={[textStyles.heading, styles.title, title.styles ?? {}]}>
+      <View
+        style={[
+          GlobalStyles.flexRow,
+          GlobalStyles.justifyBetween,
+          GlobalStyles.alignCenter,
+          GlobalStyles.marginBottomSm,
+        ]}
+      >
+        <Text style={[textStyles.subheading, styles.title, title.styles ?? {}]}>
           {title.text}
         </Text>
       </View>
@@ -31,11 +40,16 @@ const styles = StyleSheet.create({
     marginTop: spacing.lg,
   },
   title: {
+    marginLeft: spacing.md,
     marginHorizontal: spacing.sm,
   },
   product: {
     marginHorizontal: spacing.sm,
     marginTop: spacing.md,
+  },
+  viewAllCta: {
+    color: colors.blue.blue500,
+    fontWeight: '600',
   },
 });
 

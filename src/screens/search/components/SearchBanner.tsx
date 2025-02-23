@@ -1,26 +1,34 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { ALL_CATEGORIES } from '../../../data/category/categories/categories';
+import Text from '../../../design-system/atoms/Text';
 import { CategoryCircle } from '../../../design-system/organisms/Category';
+import GlobalStyles from '../../../styles/global';
 
-const AvailableCategories = () => {
+const SearchBanner: React.FC = () => {
   const handleCategoryPress = () => {};
+
   return (
-    <View style={{ flexDirection: 'row' }}>
-      {ALL_CATEGORIES.map(category => (
-        <View key={category.name} style={{ marginHorizontal: 5 }}>
-          <CategoryCircle
-            size={50}
-            key={category.id}
-            category={category}
-            onPress={handleCategoryPress}
-          />
+    <View style={[GlobalStyles.alignCenter]}>
+      <Text variant="subheading" style={[GlobalStyles.marginVerticalMd]}>
+        Most Searched Categories
+      </Text>
+      <View style={GlobalStyles.row}>
+        <View style={GlobalStyles.flexRow}>
+          {ALL_CATEGORIES.map(category => (
+            <View key={category.name} style={GlobalStyles.marginHorizontalSm}>
+              <CategoryCircle
+                size={50}
+                key={category.id}
+                category={category}
+                onPress={handleCategoryPress}
+              />
+            </View>
+          ))}
         </View>
-      ))}
+      </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
-
-export default AvailableCategories;
+export default SearchBanner;

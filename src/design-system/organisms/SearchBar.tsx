@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import { TextInput as RNTextInput, View } from 'react-native';
 import { goBack } from '../../navigation/utils';
 import TextInput from '../atoms/TextInput';
+import GlobalStyles from '../../styles/global';
 
-const SearchBar: React.FC = ({ leftIcon, setQuery }) => {
+const SearchBar: React.FC = ({ leftIcon, query, setQuery }) => {
   const searchQueryRef = useRef<RNTextInput | null>(null);
 
   const clearSearch = () => {
@@ -13,16 +14,17 @@ const SearchBar: React.FC = ({ leftIcon, setQuery }) => {
   };
 
   return (
-    <View style={{ paddingTop: 16 }}>
+    <View style={GlobalStyles.paddingTopMd}>
       <TextInput
         autoFocus={true}
-        placeholder="Search products..."
+        value={query}
         ref={searchQueryRef}
-        onRightIconPress={clearSearch}
         leftIcon={leftIcon}
-        rightIcon={searchQueryRef.current?.value && 'close'}
         onChangeText={setQuery}
         onLeftIconPress={goBack}
+        onRightIconPress={clearSearch}
+        placeholder="Search products..."
+        rightIcon={query && 'close'}
       />
     </View>
   );

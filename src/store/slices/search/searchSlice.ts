@@ -2,8 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../../../data/type';
 import { SearchState } from './type';
 
-const CACHE_EXPIRY = 5 * 60 * 1000;
-
 const MAX_RECENT_SEARCHES = 10;
 
 const initialState: SearchState = {

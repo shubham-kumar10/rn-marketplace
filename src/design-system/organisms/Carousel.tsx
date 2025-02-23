@@ -1,6 +1,5 @@
-import React, { useRef, useCallback, useEffect } from 'react';
-import { View, FlatList, Dimensions, StyleSheet, Text } from 'react-native';
-import spacing from '../theme/spacing';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
 
 const { width: WINDOW_WIDTH } = Dimensions.get('window');
 const ITEM_WIDTH = WINDOW_WIDTH;

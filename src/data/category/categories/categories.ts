@@ -31,12 +31,4 @@ export const ALL_CATEGORIES = [
     creationAt: '2025-02-22T10:56:21.000Z',
     updatedAt: '2025-02-22T10:56:21.000Z',
   },
-  {
-    id: 5,
-    name: 'Miscellaneous',
-    slug: 'miscellaneous',
-    image: 'https://i.imgur.com/BG8J0Fj.jpg',
-    creationAt: '2025-02-22T10:56:21.000Z',
-    updatedAt: '2025-02-22T10:56:21.000Z',
-  },
 ];
