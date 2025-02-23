@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Product } from '../../api/models/product.model';
 import { ALL_PRODUCTS } from '../../data/category/products/products';
 import NavigationHeader from '../../design-system/molecules/NavigationHeader';
-import ProductCard from '../../design-system/molecules/ProductCard';
+import ProductCard from '../../design-system/organisms/ProductCard';
 import { goBack } from '../../navigation/utils';
 import { useAppSelector } from '../../store/hooks';
 import GlobalStyles from '../../styles/global';

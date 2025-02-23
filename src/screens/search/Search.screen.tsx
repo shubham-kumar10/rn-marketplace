@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { ActivityIndicator, FlatList, SafeAreaView, View } from 'react-native';
 import { Product } from '../../data/type';
-import ProductCard from '../../design-system/molecules/ProductCard';
+import ProductCard from '../../design-system/organisms/ProductCard';
 import SearchBar from '../../design-system/organisms/SearchBar';
 import { SearchScreenProps } from '../../navigation/types';
 import GlobalStyles from '../../styles/global';

@@ -7,7 +7,7 @@ interface Props {
   onPress: () => void;
   variant?: 'primary' | 'secondary';
   style?: ViewStyle;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 const Button: React.FC<Props> = ({
