@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders button with custom style correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#2979FF",
+      "borderRadius": 8,
+      "marginTop": 10,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "white",
+        "fontSize": 16,
+        "fontWeight": "500",
+      }
+    }
+  >
+    Custom Style
+  </Text>
+</View>
+`;
+
+exports[`Button renders disabled button correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": true,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#2979FF",
+      "borderRadius": 8,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "white",
+        "fontSize": 16,
+        "fontWeight": "500",
+      }
+    }
+  >
+    Disabled Button
+  </Text>
+</View>
+`;
+
+exports[`Button renders primary button correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#2979FF",
+      "borderRadius": 8,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "white",
+        "fontSize": 16,
+        "fontWeight": "500",
+      }
+    }
+  >
+    Primary Button
+  </Text>
+</View>
+`;
+
+exports[`Button renders secondary button correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#EEEEEE",
+      "borderRadius": 8,
+      "opacity": 1,
+      "paddingHorizontal": 16,
+      "paddingVertical": 8,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "white",
+        "fontSize": 16,
+        "fontWeight": "500",
+      }
+    }
+  >
+    Secondary Button
+  </Text>
+</View>
+`;
