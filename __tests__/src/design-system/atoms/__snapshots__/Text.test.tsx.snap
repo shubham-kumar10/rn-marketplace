@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text renders correctly with body variant 1`] = `
+<Text
+  style={
+    [
+      {
+        "fontFamily": "System",
+      },
+      {
+        "fontSize": 16,
+        "fontWeight": "400",
+        "lineHeight": 20,
+      },
+      {
+        "color": "#212121",
+      },
+      undefined,
+    ]
+  }
+>
+  Body Text
+</Text>
+`;
+
+exports[`Text renders correctly with custom color 1`] = `
+<Text
+  style={
+    [
+      {
+        "fontFamily": "System",
+      },
+      {
+        "fontSize": 16,
+        "fontWeight": "400",
+        "lineHeight": 20,
+      },
+      {
+        "color": "#212121",
+      },
+      undefined,
+    ]
+  }
+>
+  Colored Text
+</Text>
+`;
+
+exports[`Text renders correctly with custom style 1`] = `
+<Text
+  style={
+    [
+      {
+        "fontFamily": "System",
+      },
+      {
+        "fontSize": 16,
+        "fontWeight": "400",
+        "lineHeight": 20,
+      },
+      {
+        "color": "#212121",
+      },
+      {
+        "fontSize": 20,
+      },
+    ]
+  }
+>
+  Styled Text
+</Text>
+`;
+
+exports[`Text renders correctly with default props 1`] = `
+<Text
+  style={
+    [
+      {
+        "fontFamily": "System",
+      },
+      {
+        "fontSize": 16,
+        "fontWeight": "400",
+        "lineHeight": 20,
+      },
+      {
+        "color": "#212121",
+      },
+      undefined,
+    ]
+  }
+>
+  Default Text
+</Text>
+`;
+
+exports[`Text renders correctly with heading variant 1`] = `
+<Text
+  style={
+    [
+      {
+        "fontFamily": "System",
+      },
+      {
+        "fontSize": 24,
+        "fontWeight": "700",
+        "lineHeight": 24,
+      },
+      {
+        "color": "#212121",
+      },
+      undefined,
+    ]
+  }
+>
+  Heading Text
+</Text>
+`;
