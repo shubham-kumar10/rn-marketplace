@@ -15,6 +15,7 @@ import { store } from './src/store/store';
 import ErrorBoundary from './src/utils/ErrorBoundary';
 import * as Sentry from '@sentry/react-native';
 import { linking } from './src/navigation/linking';
+import { ToastProvider } from './src/design-system/molecules/ToastProvider';
 
 function App(): React.JSX.Element {
   return (
@@ -22,7 +23,9 @@ function App(): React.JSX.Element {
       <Provider store={store}>
         <NavigationContainer ref={navigationRef} linking={linking}>
           <ErrorBoundary>
-            <MainStack />
+            <ToastProvider>
+              <MainStack />
+            </ToastProvider>
           </ErrorBoundary>
         </NavigationContainer>
       </Provider>

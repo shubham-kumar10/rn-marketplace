@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useAppDispatch } from '../store/hooks';
 import { addToCart } from '../store/slices/cart/cartSlice';
 import { Product } from '../api/models/product.model';
+import { useToast } from '../design-system/molecules/ToastProvider';
 
 const useCart = (product: Product) => {
   const dispatch = useAppDispatch();
+  const { showToast } = useToast();
 
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -23,6 +25,7 @@ const useCart = (product: Product) => {
         image: product.thumbnail,
       }),
     );
+    showToast('Added to Cart!', 'success');
     setTimeout(() => {
       setIsAddingToCart(false);
       setQuantity(1);
